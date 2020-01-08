@@ -232,6 +232,36 @@ public class Utility {
 	               merge(arr, beg, mid, end); 
 	           } 
 	       } 
+	      public static boolean AnagramStrings(String string1, String string2)
+	      {
+	    	 char ar1[]=string1.toCharArray();
+	  		char ar2[]=string2.toCharArray();
+	  		System.out.println();
+	  		int ctr=0;
+	  		if(ar1.length==ar2.length)
+	  		{
+	  			for(int i=0;i<ar1.length;i++)
+	  			{
+	  				for(int j=0;j<ar2.length;j++)
+	  				{
+	  					if(Character.toTitleCase(ar1[i])==Character.toTitleCase(ar2[j]))
+	  					{
+	  						ctr++;
+	  					}
+	  				}
+	  			}
+	  		}
+	  		if(ctr==ar1.length)
+	  		{
+	  			boolean b=true;	  		
+	  			return b;
+	  		}
+	  		else
+	  		{
+	  			boolean b=false;
+	  			return b;
+	  		}
+	      }
 }
 	    
 
