@@ -1,5 +1,6 @@
 package utility;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utility {
@@ -261,6 +262,22 @@ public class Utility {
 	  			boolean b=false;
 	  			return b;
 	  		}
+	      }
+	      public static  ArrayList<Integer> primeRange(int N)
+	      {
+	  		ArrayList<Integer> arraylist=new ArrayList<Integer>();
+	  		for(int j=2;j<=N;j++)
+	  		{
+	  			int c=0;
+	  			for(int i=2;i<=j;i++)
+	  			{
+	  				if(j%i==0)
+	  				c++;
+	  			}
+	  			if(c==1)
+	  				arraylist.add(j);
+	  		}
+	  		return arraylist;
 	      }
 }
 	    
