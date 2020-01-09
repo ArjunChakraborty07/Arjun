@@ -134,6 +134,7 @@ public class Utility {
 			}
 			return s;
 		}
+		
 		public static String[] insertionSort(String arr[]) 
 	    { 
 	        int n=arr.length; 
@@ -235,8 +236,9 @@ public class Utility {
 	       } 
 	      public static boolean AnagramStrings(String string1, String string2)
 	      {
-	    	 char ar1[]=string1.toCharArray();
+	    	char ar1[]=string1.toCharArray();
 	  		char ar2[]=string2.toCharArray();
+	  		
 	  		System.out.println();
 	  		int ctr=0;
 	  		if(ar1.length==ar2.length)
@@ -263,22 +265,7 @@ public class Utility {
 	  			return b;
 	  		}
 	      }
-	      public static  ArrayList<Integer> primeRange(int N)
-	      {
-	  		ArrayList<Integer> arraylist=new ArrayList<Integer>();
-	  		for(int j=2;j<=N;j++)
-	  		{
-	  			int c=0;
-	  			for(int i=2;i<=j;i++)
-	  			{
-	  				if(j%i==0)
-	  				c++;
-	  			}
-	  			if(c==1)
-	  				arraylist.add(j);
-	  		}
-	  		return arraylist;
-	      }
+	      
 }
 	    
 
