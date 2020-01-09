@@ -51,12 +51,14 @@ public class PrimeThousand {
 			for(int j=i+1;j<arr.length;j++)
 			{
 				String y=Integer.toString(arr[j]);
-				boolean b=Utility.AnagramStrings(x, y);
+				/*boolean b=Utility.AnagramStrings(x, y);
 				if(b==true)
 				{
 					arr1[ctr]=x;
 					arr2[ctr]=y;
-				}
+				}*/
+				System.out.println(x);
+				System.out.println(y);
 			}
 		}
 	}
@@ -86,11 +88,11 @@ public class PrimeThousand {
 		for(int i=0;i<n;i++)
 		{
 			anagram(arr,str,str1);
-			if(str[i]!=null)
+			/*if(str[i]!=null)
 			{
 				System.out.print(str[i]+" ");
 				System.out.print(str1[i]+" ");
-			}
+			}*/
 		}
 		
 	}
