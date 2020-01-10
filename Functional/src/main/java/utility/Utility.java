@@ -238,32 +238,31 @@ public class Utility {
 	      {
 	    	char ar1[]=string1.toCharArray();
 	  		char ar2[]=string2.toCharArray();
+	  		String a=String.valueOf(charsort(ar1));
+	  		String b=String.valueOf(charsort(ar2));
 	  		
-	  		System.out.println();
-	  		int ctr=0;
-	  		if(ar1.length==ar2.length)
+	  		if(a.compareToIgnoreCase(b)==0)
 	  		{
-	  			for(int i=0;i<ar1.length;i++)
-	  			{
-	  				for(int j=0;j<ar2.length;j++)
-	  				{
-	  					if(Character.toTitleCase(ar1[i])==Character.toTitleCase(ar2[j]))
-	  					{
-	  						ctr++;
-	  					}
-	  				}
-	  			}
+	  			return true;
 	  		}
-	  		if(ctr==ar1.length)
-	  		{
-	  			boolean b=true;	  		
-	  			return b;
-	  		}
-	  		else
-	  		{
-	  			boolean b=false;
-	  			return b;
-	  		}
+	  		return false;
+	      }
+	      public static char[] charsort(char arr[])
+	      {
+	    	  int n = arr.length; 
+	            for (int i = 0; i < n-1; i++) 
+	            {
+	                for (int j = i+1; j < n; j++) 
+	                {
+	                    if (Character.compare(arr[i], arr[j])>0) 
+	                    {
+	                        char temp = arr[j]; 
+	                        arr[j] = arr[i]; 
+	                        arr[i] = temp; 
+	                    } 
+	                }
+	            }
+	            return arr;
 	      }
 	      
 }

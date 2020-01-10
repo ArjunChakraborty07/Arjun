@@ -42,23 +42,22 @@ public class PrimeThousand {
 			}
 		}
 	}
-	public static void anagram(int arr[], String arr1[], String arr2[])
+	public static void anagram(int arr[])
 	{
-		int ctr=0;
-		for(int i=0;i<arr.length;i++)
+		for(int i=0;arr[i]!=0;i++)
 		{
-			String x=Integer.toString(arr[i]);
-			for(int j=i+1;j<arr.length;j++)
+			String x=String.valueOf(arr[i]);
+			
+			for(int j=i+1;arr[j]!=0;j++)
 			{
-				String y=Integer.toString(arr[j]);
-				/*boolean b=Utility.AnagramStrings(x, y);
-				if(b==true)
+				String y=String.valueOf(arr[j]);
+				boolean b=Utility.AnagramStrings(x,y);
 				{
-					arr1[ctr]=x;
-					arr2[ctr]=y;
-				}*/
-				System.out.println(x);
-				System.out.println(y);
+						if(b==true)
+						{
+							System.out.println(x+" "+y);
+						}
+				}
 			}
 		}
 	}
@@ -68,32 +67,26 @@ public class PrimeThousand {
 		int n=Utility.returnInt();
 		int arr[]=new int[n];
 		int arr1[]=new int[n];
-		String str[]=new String[n];
-		String str1[]=new String[n];
+		System.out.println("\nPrimes");
+		prime(n,arr);
 		for(int i=0;i<n;i++)
 		{
-			prime(n,arr);
+			
 			if(arr[i]!=0)
 				System.out.print(arr[i]+" ");
 		}
-		System.out.println("\nPalindrome");
+		System.out.println("\nPrime Palindromes");
+		palindrome(arr,arr1);
 		for(int i=0;i<arr.length;i++)
 		{
-			palindrome(arr,arr1);
+			
 			if(arr1[i]!=0)
 			{
 				System.out.print(arr1[i]+" ");
 			}
-		}
-		for(int i=0;i<n;i++)
-		{
-			anagram(arr,str,str1);
-			/*if(str[i]!=null)
-			{
-				System.out.print(str[i]+" ");
-				System.out.print(str1[i]+" ");
-			}*/
-		}
+		}	
+		System.out.println("\nPrime Anagram couples");
+		anagram(arr);
 		
 	}
 }
