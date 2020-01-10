@@ -300,7 +300,7 @@ public class Utility {
 				System.out.println("Item not found!!");
 				return -1;
 			}
-		public static <T extends Comparable<? super T>> T[] insertionSortgeneric(T arr[]) 
+		public static <T extends Comparable<? super T>> T[] insertionSortgeneric(T[] arr) 
 		{ 
 		    int n=arr.length; 
 		    for (int i=1;i<n;i++)
@@ -316,7 +316,36 @@ public class Utility {
 		    }
 		    return arr;
 		}
-}	    
+		static int ctr=0;
+		public static void message(int arr[],int beg, int end)
+		{				
+			ctr++;
+			int mid=(beg+end)/2;
+			System.out.println(" CPU guesses your number is "+arr[mid]);
+			System.out.println(" If the guess is high press 1");
+			System.out.println(" If the guess is low press 2");
+			System.out.println(" If the guess is correct press 3");
+			System.out.print(" Enter your choice:");
+			int ch=Utility.returnInt();
+			switch(ch)
+			{
+			case 1:
+				System.out.println(" Number is too high, guess again");
+				end=mid;
+				message(arr,beg,end);
+				break;
+			case 2:	
+				System.out.println(" Number is too low, guess again");
+				beg=mid;
+				message(arr,beg,end);
+				break;
+			case 3:
+				System.out.print(" You guessed it right, good job CPU");
+				System.out.print(" ,You took "+ ctr+" chances");
+				break;
+			}
+		}
+}		
 
 
 

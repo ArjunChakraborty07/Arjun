@@ -16,7 +16,7 @@ public class WordFromFile {
 			System.out.println(st);
 			String s[] = st.split(" ");
 			System.out.println(s.length);
-			s = Utility.sort(s);
+			s = Utility.bubbleSort(s);
 			for (int i = 0; i < s.length; i++)
 			{
 				System.out.print(s[i] + " ");

@@ -38,14 +38,14 @@ public class Permutation {
 		a[j] = temp;
 	}
 
-	public static void permute(String str, int l, int r)
+	public static void permuteRecursion(String str, int l, int r)
 	{
 		if (l == r)
 			System.out.println(str);
 		else {
 			for (int i = l; i <= r; i++) {
 				str = swap1(str, l, i);
-				permute(str, l + 1, r);
+				permuteRecursion(str, l + 1, r);
 				str = swap1(str, l, i);
 			}
 		}
@@ -65,7 +65,7 @@ public class Permutation {
 		iteration(str);
 		System.out.println("\n Permutation with Recursion\n");
 		int n = str.length();
-		permute(str, 0, n - 1);
+		permuteRecursion(str, 0, n - 1);
 	}
 
 }
