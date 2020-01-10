@@ -7,14 +7,13 @@ public class Leapyear {
 		int year;
 		System.out.println("Leap Year");
 		System.out.print("Enter a year for checking:");
-		year=Utility.returnInt();
-		if(year%100==0) {
-			if(year%400==0)
+		year = Utility.returnInt();
+		if (year % 100 == 0) {
+			if (year % 400 == 0)
 				System.out.println("Leap Year");
 			else
 				System.out.println("Not a leap year");
-		}
-		else if(year%4==0)
+		} else if (year % 4 == 0)
 			System.out.println("Leap Year");
 		else
 			System.out.println("Not a leap year");

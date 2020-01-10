@@ -38,8 +38,7 @@ public class Permutation {
 		a[j] = temp;
 	}
 
-	public static void permuteRecursion(String str, int l, int r)
-	{
+	public static void permuteRecursion(String str, int l, int r) {
 		if (l == r)
 			System.out.println(str);
 		else {
@@ -51,8 +50,7 @@ public class Permutation {
 		}
 	}
 
-	public static String swap1(String a, int i, int j)
-	{
+	public static String swap1(String a, int i, int j) {
 		char[] charArray = a.toCharArray();
 		swap(charArray, i, j);
 		return String.valueOf(charArray);
