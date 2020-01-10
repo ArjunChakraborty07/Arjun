@@ -120,7 +120,7 @@ public class Utility {
 			System.out.println("Word not found!!");
 			return -1;
 		}
-		public static <T extends Comparable<? super T>>T[] sort(T s[]) {
+		public static <T extends Comparable<? super T>>T[] Mysortgeneric(T s[]) {
 			T tmp;
 			for (int i = 0; i < s.length; i++) {
 				for (int j = 0; j < s.length; j++) {
@@ -297,11 +297,26 @@ public class Utility {
 				         return mid;
 				     }
 				   }
-				System.out.println("Word not found!!");
+				System.out.println("Item not found!!");
 				return -1;
 			}
-}
-	    
+		public static <T extends Comparable<? super T>> T[] insertionSortgeneric(T arr[]) 
+		{ 
+		    int n=arr.length; 
+		    for (int i=1;i<n;i++)
+		    { 
+		    	T temp=arr[i];
+		    	int j=i-1;
+		        while(j>=0 && (arr[j].compareTo(temp)>0))
+		        {
+		        		arr[j+1]=arr[j];
+		        		j=j-1;
+		        } 
+		        arr[j+1]=temp;
+		    }
+		    return arr;
+		}
+}	    
 
 
 
