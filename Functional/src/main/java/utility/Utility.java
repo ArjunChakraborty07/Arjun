@@ -1,6 +1,5 @@
 package utility;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utility {
@@ -264,7 +263,22 @@ public class Utility {
 	            }
 	            return arr;
 	      }
-	      
+	      public static< T extends Comparable<? super T>>void selectionSort(T[] arr)
+	      {
+	    	  for(int i=0;i<arr.length-1;i++)
+	    	  {	  int min=i;
+	    	  	for(int j=i+1;j<arr.length;j++)
+	    	  	{
+	    		  if(arr[j].compareTo(arr[min])<0)
+	    		  {
+	    			  min=j;
+	    		  }
+	    	  	}
+	    	  T temp=arr[i];
+	    	  arr[i]=arr[min];
+	    	  arr[min]=temp;
+	    	  }
+	      }
 }
 	    
 
