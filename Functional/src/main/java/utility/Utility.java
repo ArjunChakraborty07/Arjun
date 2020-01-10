@@ -32,12 +32,13 @@ public class Utility {
 			double payment=(P*end)/(1-Math.pow((1+end),(-n)));
 			System.out.print("\nPayment: "+payment);
 		}
-		public static void displayweek(int d,int mid,int y)
-		{
-				double y0 = y-((14-mid)/12);
-				double x  = y0+(y0/4)-(y0/100)+(y0/400);
-				double m0 = mid + 12*((14-mid)/12)-2;
-				int d0 =(int) (d + x + (31*m0)/12)%7;
+		public static void displayweek(int d,int m,int y)
+		{				
+				int y0 = y - (14 - m) / 12;
+				int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
+				int m0 = m + 12 * ((14 - m) / 12) - 2;
+				int d0 = (d + x + (31 * m0) / 12) % 7;
+			
 				switch(d0)
 				{
 				case 1:
