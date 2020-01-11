@@ -3,77 +3,29 @@ package com.bridgelabz.basicprogramming;
 import utility.Utility;
 
 public class PrimeThousand {
-	public static void prime(int n, int arr[]) {
-		int c = 0;
-		for (int i = 2; i <= n; i++) {
-
-			int ctr = 0;
-			for (int j = 2; j <= i; j++) {
-				if (i % j == 0)
-					ctr++;
-			}
-			if (ctr == 1) {
-				arr[c] = i;
-				c++;
-			}
-		}
-	}
-
-	public static void palindrome(int arr[], int arr1[]) {
-		int ctr = 0;
-		for (int i = 0; i < arr.length; i++) {
-			int tmp = 0;
-			int x = arr[i];
-			while (x > 0) {
-				tmp = tmp * 10 + x % 10;
-				x = x / 10;
-			}
-			if (tmp == arr[i]) {
-
-				arr1[ctr] = tmp;
-				ctr++;
-			}
-		}
-	}
-
-	public static void anagram(int arr[]) {
-		for (int i = 0; arr[i] != 0; i++) {
-			String x = String.valueOf(arr[i]);
-
-			for (int j = i + 1; arr[j] != 0; j++) {
-				String y = String.valueOf(arr[j]);
-				boolean b = Utility.AnagramStrings(x, y);
-				{
-					if (b == true) {
-						System.out.println(x + " " + y);
-					}
-				}
-			}
-		}
-	}
 
 	public static void main(String args[]) {
 		System.out.print("Enter the range(limit is 1000):");
-		int n = Utility.returnInt();
+		int n = Utility.returnInt();// Taking input from user
 		int arr[] = new int[n];
 		int arr1[] = new int[n];
 		System.out.println("\nPrimes");
-		prime(n, arr);
+		Utility.prime(n, arr); // Calling method from utility class for prime numbers
 		for (int i = 0; i < n; i++) {
 
 			if (arr[i] != 0)
-				System.out.print(arr[i] + " ");
+				System.out.print(arr[i] + " ");// Printing the prime numbers
 		}
 		System.out.println("\nPrime Palindromes");
-		palindrome(arr, arr1);
+		Utility.palindrome(arr, arr1); // Calling method from utility class for palindrome numbers
 		for (int i = 0; i < arr.length; i++) {
 
 			if (arr1[i] != 0) {
-				System.out.print(arr1[i] + " ");
+				System.out.print(arr1[i] + " "); // Printing the palindrome numbers
 			}
 		}
 		System.out.println("\nPrime Anagram couples");
-		anagram(arr);
+		Utility.anagram(arr); // Calling method from utility class for printing the Anagram couples
 
 	}
 }

@@ -7,9 +7,9 @@ public class Gambler {
 	public static void main(String args[]) {
 		System.out.println("  Gambling\n\n");
 		Random gamble = new Random();
-		System.out.print("Enter Stake:");
-		int stake = Utility.returnInt();
-		System.out.print("Enter Goal:");
+		System.out.print("Enter Stake:"); // Input statements
+		int stake = Utility.returnInt(); // from
+		System.out.print("Enter Goal:"); // the user
 		int goal = Utility.returnInt();
 		System.out.print("Enter Trials:");
 		int trials = Utility.returnInt();
@@ -17,12 +17,12 @@ public class Gambler {
 		while (play < trials && (stake > 0 && stake < goal)) {
 			play++;
 			t++;
-			tt = trials - t;
+			tt = trials - t; // Calculating the gampling outcomes using Random method
 			int g = gamble.nextInt(2);
 			if (g == 1) {
 				stake++;
 				win++;
-				System.out.println(
+				System.out.println( // Output Statement
 						"Player wins(" + win + "), stake raised to " + stake + " trials left " + tt + " play " + play);
 			} else {
 				stake--;
@@ -31,7 +31,7 @@ public class Gambler {
 						+ " play " + play);
 			}
 		}
-		double percentwin = ((double) win / play) * 100;
+		double percentwin = ((double) win / play) * 100; // Win percentage
 		System.out.println("Win Percent is " + percentwin);
 	}
 
