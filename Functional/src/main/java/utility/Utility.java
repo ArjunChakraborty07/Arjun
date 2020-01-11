@@ -90,11 +90,11 @@ public class Utility {
 
 	public static int[] toBinary(int n) {// Method for integer to binary
 		int[] binary = new int[8];
-		int index = 0;
+		int index = 7;
 		while (n > 0) {
 			binary[index] = n % 2;//Storing the binary value in a integer array
 			n = n / 2;
-			index++;
+			index--;
 		}
 		return binary;// returning the binary value in integer array
 	}
