@@ -113,7 +113,7 @@ public class UnorderedList {
 		}
 		return list;
 	}
-	public static<T> void pop( UnorderedList list)
+	public static void pop( UnorderedList list)
 	{
 		Node follow=list.head;
 		Node previous=null;
@@ -125,6 +125,29 @@ public class UnorderedList {
 		previous.next=null;	
 		follow=null;
 	}
+	public static void popPos(int pos, UnorderedList list)
+	{
+		Node follow=list.head;
+		Node previous=null;
+		if(pos==0)
+		{			
+			list.head=follow.next;
+			follow=null;
+		}
+		else
+		{
+			int ctr=0;		
+			
+			while(ctr!=pos)
+			{
+				previous=follow;
+				follow=follow.next;
+				ctr++;
+			}
+			previous.next=follow.next;	
+			follow=null;
+		}
+	}
 	public static void main(String[] args) {	
 	UnorderedList list=new UnorderedList();
 	
@@ -134,7 +157,7 @@ public class UnorderedList {
 	
 	
 	printlist(list);
-	//empty(list);
+	
 	printlist(list);
 	insert("Arjun", list);
 	
@@ -152,6 +175,12 @@ public class UnorderedList {
 	insertpos(5,0,list);
 	printlist(list);	
 	pop(list);
+	printlist(list);
+	insert(0,list);
+	printlist(list);
+	popPos(4,list);
+	printlist(list);
+	insertpos(5,4,list);
 	printlist(list);
 	}
 	
