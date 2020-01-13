@@ -65,19 +65,39 @@ public class UnorderedList {
 			}	
 			return false;		
 	}
+	public static int size(UnorderedList list)
+	{
+		int ctr=0;
+		Node currNode=list.head;
+		while(currNode!=null)
+		{
+			ctr++;
+			currNode=currNode.next;
+		}	
+		return ctr;		
+	}
 	public static void main(String[] args) {	
 	UnorderedList list=new UnorderedList();
+	
 	empty(list);
+	
 	printlist(list);
+	
 	insert('a',list);
 	insert(2,list);
+	
+	
 	printlist(list);
-	//empty(list);
-	printlist(list);
+	
 	insert("Arjun",list);
+	
 	printlist(list);
+	
 	boolean b=search(2, list);
 	System.out.println(b);
+	
+	int s=size(list);
+	System.out.println(s);
 	}
 	
 }
