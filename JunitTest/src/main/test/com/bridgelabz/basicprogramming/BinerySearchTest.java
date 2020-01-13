@@ -13,6 +13,7 @@ public class BinerySearchTest {
 		String a="Cc";
 		int index=utility.Utility.binarySearch(str1, 0, str1.length, a);
 		assertEquals(2,index);
+		
 	}
 
 }
