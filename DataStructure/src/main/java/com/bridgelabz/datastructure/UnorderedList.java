@@ -90,6 +90,29 @@ public class UnorderedList {
 		}	
 		return -1;		
 	}
+	public static <T> UnorderedList insertpos(T data,int pos, UnorderedList list )
+	{
+		int ctr=0;
+		Node follow=list.head;
+		Node newNode=new Node(data);
+		
+		if(pos==0)
+		{	
+			newNode.next=list.head;
+			list.head=newNode;
+		}
+		else
+		{
+			while(ctr!=pos-1)
+			{
+				follow=follow.next;
+				ctr++;
+			}
+			newNode.next=follow.next;
+			follow.next=newNode;
+		}
+		return list;
+	}
 	public static void main(String[] args) {	
 	UnorderedList list=new UnorderedList();
 	
@@ -113,6 +136,9 @@ public class UnorderedList {
 	
 	int index=index(2, list);
 	System.out.println("2 at the index: "+index);
+	insertpos("ss",2,list);
+	insertpos(5,0,list);
+	printlist(list);	
 	}
 	
 }
