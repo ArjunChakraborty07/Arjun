@@ -113,6 +113,18 @@ public class UnorderedList {
 		}
 		return list;
 	}
+	public static<T> void pop( UnorderedList list)
+	{
+		Node follow=list.head;
+		Node previous=null;
+		while(follow.next!=null)
+		{
+			previous=follow;
+			follow=follow.next;
+		}
+		previous.next=null;	
+		follow=null;
+	}
 	public static void main(String[] args) {	
 	UnorderedList list=new UnorderedList();
 	
@@ -139,6 +151,8 @@ public class UnorderedList {
 	insertpos("ss",2,list);
 	insertpos(5,0,list);
 	printlist(list);	
+	pop(list);
+	printlist(list);
 	}
 	
 }
