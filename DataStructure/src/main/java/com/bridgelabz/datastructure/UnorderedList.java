@@ -16,7 +16,7 @@ public class UnorderedList {
 	{
 		list.head=null;	
 	}
-	public static <T> UnorderedList insert(T data, UnorderedList list)
+	public static <T> UnorderedList insert(T data, UnorderedList list )
 	{
 		Node newNode=new Node(data);
 		if(list.head==null)
@@ -52,7 +52,7 @@ public class UnorderedList {
 			System.out.println();
 		}
 	}
-	public static <T extends Comparable> boolean search(T data, UnorderedList list)
+	public static <T extends Comparable> boolean search(T data, UnorderedList list )
 	{
 		Node currNode=list.head;
 			while(currNode!=null)
@@ -76,20 +76,32 @@ public class UnorderedList {
 		}	
 		return ctr;		
 	}
+	public static<T> int index(T data, UnorderedList list)
+	{	int ctr=0;
+		Node currNode=list.head;
+		while(currNode!=null)
+		{
+			if(currNode.data.equals(data))
+			{
+				return ctr;
+			}
+			ctr++;
+			currNode=currNode.next;
+		}	
+		return -1;		
+	}
 	public static void main(String[] args) {	
 	UnorderedList list=new UnorderedList();
 	
-	empty(list);
 	
-	printlist(list);
-	
-	insert('a',list);
-	insert(2,list);
+	insert('a', list);
+	insert(2, list);
 	
 	
 	printlist(list);
-	
-	insert("Arjun",list);
+	//empty(list);
+	printlist(list);
+	insert("Arjun", list);
 	
 	printlist(list);
 	
@@ -98,6 +110,9 @@ public class UnorderedList {
 	
 	int s=size(list);
 	System.out.println(s);
+	
+	int index=index(2, list);
+	System.out.println("2 at the index: "+index);
 	}
 	
 }
