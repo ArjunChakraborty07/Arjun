@@ -1,10 +1,12 @@
 package com.bridgelabz.datastructure;
 
+import java.io.*;
+import java.util.Scanner;
 public class UnorderedList {
 	
 	static class Node <T>{
 		T data;
-		Node next=null;
+		Node<T> next=null;
 		Node(T d)
 		{
 			data=d;
@@ -28,7 +30,7 @@ public class UnorderedList {
 			Node last=list.head;
 			while(last.next!=null)
 			{
-				last=last.next;
+					last=last.next;
 			}
 			last.next=newNode;
 		}
@@ -52,7 +54,7 @@ public class UnorderedList {
 			System.out.println();
 		}
 	}
-	public static <T extends Comparable> boolean search(T data, UnorderedList list )
+	public static <T extends Comparable<? super T>> boolean search(T data, UnorderedList list )
 	{
 		Node currNode=list.head;
 			while(currNode!=null)
@@ -96,21 +98,22 @@ public class UnorderedList {
 		Node follow=list.head;
 		Node newNode=new Node(data);
 		
-		if(pos==0)
-		{	
-			newNode.next=list.head;
-			list.head=newNode;
-		}
-		else
-		{
-			while(ctr!=pos-1)
-			{
-				follow=follow.next;
-				ctr++;
+			if(pos==0)
+			{	
+				newNode.next=list.head;
+				list.head=newNode;
 			}
-			newNode.next=follow.next;
-			follow.next=newNode;
-		}
+			else
+			{
+				while(ctr!=pos-1)
+				{
+					follow=follow.next;
+					ctr++;
+				}
+				newNode.next=follow.next;
+				follow.next=newNode;
+			}
+		
 		return list;
 	}
 	public static void pop( UnorderedList list)
@@ -148,40 +151,51 @@ public class UnorderedList {
 			follow=null;
 		}
 	}
-	public static void main(String[] args) {	
-	UnorderedList list=new UnorderedList();
+	public static <T extends Comparable<? super T>> void check(T data, UnorderedList list)
+	{
+		boolean b;
+		
+		b=search(data,list);
+		if(b==true)
+		{
+			int n=index(data,list);
+			popPos(n,list);
+		}
+		else
+		{
+			insert(data,list);
+		}
+	}
+	public static <T extends Comparable< ? super T>> void main(String[] args) throws IOException  {	
 	
-	
-	insert('a', list);
-	insert(2, list);
-	
-	
-	printlist(list);
-	
-	printlist(list);
-	insert("Arjun", list);
-	
-	printlist(list);
-	
-	boolean b=search(2, list);
-	System.out.println(b);
-	
-	int s=size(list);
-	System.out.println(s);
-	
-	int index=index(2, list);
-	System.out.println("2 at the index: "+index);
-	insertpos("ss",2,list);
-	insertpos(5,0,list);
-	printlist(list);	
-	pop(list);
-	printlist(list);
-	insert(0,list);
-	printlist(list);
-	popPos(4,list);
-	printlist(list);
-	insertpos(5,4,list);
-	printlist(list);
+		
+		UnorderedList list=new UnorderedList();
+		T var;
+		File file=new File("/home/admin1/Desktop/simple.txt");
+		BufferedReader br=new BufferedReader(new FileReader(file));
+		String str= br.readLine();
+		String arr[]=str.split(" ");
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			insert(arr[i], list);
+		}
+		System.out.print(" Enter an element: ");
+		var=(T) utility.Utility.returnString();
+		Node currNode=list.head;
+		printlist(list);
+		
+		check(var,list);
+		printlist(list);
+		
+		File f=new File("/home/admin1/Desktop/simple2.txt");
+		FileWriter fw=new FileWriter(f);
+		while(currNode!=null)
+		{
+			fw.write((String)currNode.data+" ");
+			currNode=currNode.next;
+		}	
+		fw.close();
 	}
 	
 }

@@ -205,13 +205,16 @@ public class Utility {
 		}
 	}
 
-	public static void mergeSort(String arr[], int beg, int end) {// Method which is to be called for merge sort in the
+	public static String[] mergeSort(String arr[], int beg, int end) {// Method which is to be called for merge sort in the
 																	// main method for a string
 		if (beg < end) {
 			int mid = (beg + end) / 2;
-			mergeSort(arr, beg, mid);
-			merge(arr, beg, mid, end);
+			
+			mergeSort(arr, beg, mid); 
+			mergeSort(arr , mid+1, end); 		
+			merge(arr, beg, mid, end); 
 		}
+		return arr;
 	}
 
 	public static boolean AnagramStrings(String string1, String string2) {// Method for anagram strings of a boolean
@@ -285,7 +288,7 @@ public class Utility {
 				arr[j + 1] = arr[j];
 				j = j - 1;
 			}
-			arr[j + 1] = temp;// Storting statement
+			arr[j + 1] = temp;// Sorting statement
 		}
 		return arr;// Returning the sorted array
 	}
