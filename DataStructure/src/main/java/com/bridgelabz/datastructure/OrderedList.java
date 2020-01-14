@@ -1,5 +1,7 @@
 package com.bridgelabz.datastructure;
 
+import com.bridgelabz.datastructure.UnorderedList.Node;
+
 public class OrderedList {
 	static class Node
 	{
@@ -39,18 +41,60 @@ public class OrderedList {
 	}
 	public static void remove(int data, OrderedList list)
 	{
-		Node currNode=list.head;
-		Node follow=null;
-		while(currNode.data!=data)
-		{
-			if(currNode.data<data)
-			{
-				follow=currNode;			
-				currNode=currNode.next;
-			}
+		int pos=index(data,list);
+		Node follow=list.head;
+		Node previous=null;
+		if(pos==0)
+		{			
+			list.head=follow.next;
+			follow=null;
 		}
-		currNode.next=follow.next;
-		follow=null;
+		else
+		{
+			int ctr=0;		
+			
+			while(ctr!=pos)
+			{
+				previous=follow;
+				follow=follow.next;
+				ctr++;
+			}
+			previous.next=follow.next;	
+			follow=null;
+		}
+	}
+	public static int index(int data, OrderedList list)
+	{	int ctr=0;
+		Node currNode=list.head;
+		while(currNode!=null)
+		{
+			if(currNode.data==data)
+			{
+				return ctr;
+			}
+			ctr++;
+			currNode=currNode.next;
+		}	
+		return -1;		
+	}
+	public static boolean search(int data, OrderedList list)
+	{
+		boolean b=false;
+		Node curr=list.head;
+		while(curr!=null)
+		{
+			
+			if(curr.data==data)
+			{
+				b=true;
+				return b;		
+			}
+			else
+			{
+				curr=curr.next;
+			}			
+		}
+		return b;
 	}
 	public static void printlist(OrderedList list)
 	{		
@@ -84,6 +128,9 @@ public class OrderedList {
 		add(8,list);
 		add(7,list);
 		printlist(list);
-		remove(2,list);
+		remove(5,list);
+		boolean b=search(9,list);
+		System.out.println(b);
+		printlist(list);
 	}
 }
