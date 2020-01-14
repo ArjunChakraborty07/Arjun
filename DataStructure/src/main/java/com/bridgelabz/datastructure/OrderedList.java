@@ -1,5 +1,5 @@
 package com.bridgelabz.datastructure;
-
+import java.io.*;
 public class OrderedList {
 	static class Node
 	{
@@ -168,7 +168,7 @@ public class OrderedList {
 		}
 	}
 
-	public static void main(String args[])
+	public static void main(String args[]) throws IOException
 	{
 		OrderedList list=new OrderedList();
 		add(5,list);
@@ -191,5 +191,14 @@ public class OrderedList {
 		popPos(4, list);
 		printlist(list);
 		System.out.println(isempty(list));
+		Node currNode=list.head;
+		File f=new File("/home/admin1/Desktop/simple1.txt");
+		FileWriter fw=new FileWriter(f);
+		while(currNode!=null)
+		{
+			fw.write(currNode.data+" ");
+			currNode=currNode.next;
+		}	
+		fw.close();	
 	}
 }
