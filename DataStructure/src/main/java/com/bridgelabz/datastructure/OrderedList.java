@@ -96,6 +96,15 @@ public class OrderedList {
 		}
 		return b;
 	}
+	public static boolean isempty(OrderedList list)
+	{
+		if(list.head==null)
+		{
+			return true;
+		}
+		return false;
+		
+	}
 	public static void printlist(OrderedList list)
 	{		
 		Node currNode=list.head;
@@ -132,5 +141,13 @@ public class OrderedList {
 		boolean b=search(9,list);
 		System.out.println(b);
 		printlist(list);
+		System.out.println(isempty(list));
+		remove(2,list);
+		remove(7,list);
+		remove(8,list);
+		remove(6,list);
+		remove(4,list);
+		printlist(list);
+		System.out.println(isempty(list));
 	}
 }
