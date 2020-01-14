@@ -185,9 +185,9 @@ public class UnorderedList {
 		Node currNode=list.head;
 		printlist(list);
 		
-		check(var,list);
+		System.out.println(size(list));
+		popPos(4,list);
 		printlist(list);
-		
 		File f=new File("/home/admin1/Desktop/simple2.txt");
 		FileWriter fw=new FileWriter(f);
 		while(currNode!=null)

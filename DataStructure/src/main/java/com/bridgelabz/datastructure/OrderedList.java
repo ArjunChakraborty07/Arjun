@@ -126,6 +126,29 @@ public class OrderedList {
 		behind.next=null;
 		curr=null;
 	}
+	public static void popPos(int pos, OrderedList list)
+	{
+		Node curr=list.head;
+		Node follow=null;
+		
+		if(pos==1)
+		{
+			list.head=curr.next;
+			curr=null;
+		}
+		else
+		{
+			int ctr=0;
+			while(ctr!=pos-1)
+			{
+				ctr++;
+				follow=curr;
+				curr=curr.next;	
+			}
+			follow.next=curr.next;
+			curr=null;
+		}
+	}
 	public static void printlist(OrderedList list)
 	{		
 		Node currNode=list.head;
@@ -165,6 +188,7 @@ public class OrderedList {
 		System.out.println(isempty(list));
 		System.out.println(size(list));
 		pop(list);
+		popPos(4, list);
 		printlist(list);
 		System.out.println(isempty(list));
 	}
