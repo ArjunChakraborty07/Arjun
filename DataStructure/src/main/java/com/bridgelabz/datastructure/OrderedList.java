@@ -1,7 +1,5 @@
 package com.bridgelabz.datastructure;
 
-import com.bridgelabz.datastructure.UnorderedList.Node;
-
 public class OrderedList {
 	static class Node
 	{
@@ -116,6 +114,18 @@ public class OrderedList {
 		}
 		return size;
 	}
+	public static void pop(OrderedList list)
+	{
+		Node behind=null;
+		Node curr=list.head;
+		while(curr.next!=null)
+		{
+			behind=curr;
+			curr=curr.next;
+		}
+		behind.next=null;
+		curr=null;
+	}
 	public static void printlist(OrderedList list)
 	{		
 		Node currNode=list.head;
@@ -154,11 +164,7 @@ public class OrderedList {
 		printlist(list);
 		System.out.println(isempty(list));
 		System.out.println(size(list));
-		remove(2,list);
-		remove(7,list);
-		remove(8,list);
-		remove(6,list);
-		remove(4,list);
+		pop(list);
 		printlist(list);
 		System.out.println(isempty(list));
 	}
