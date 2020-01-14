@@ -105,6 +105,17 @@ public class OrderedList {
 		return false;
 		
 	}
+	public static int size(OrderedList list)
+	{
+		int size=0;
+		Node curr=list.head;
+		while(curr!=null)
+		{
+			curr=curr.next;
+			size++;
+		}
+		return size;
+	}
 	public static void printlist(OrderedList list)
 	{		
 		Node currNode=list.head;
@@ -142,6 +153,7 @@ public class OrderedList {
 		System.out.println(b);
 		printlist(list);
 		System.out.println(isempty(list));
+		System.out.println(size(list));
 		remove(2,list);
 		remove(7,list);
 		remove(8,list);
