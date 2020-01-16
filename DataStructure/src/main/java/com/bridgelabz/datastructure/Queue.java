@@ -68,6 +68,18 @@ public class Queue {
 		}
 		return count;
 	}
+	public static int sum()
+	{
+		System.out.println("Total: ");
+		Node curr=head;
+		int total=0;
+		while(curr!=null) 
+		{
+			total+=curr.data;
+			curr=curr.next;
+		}
+		return total;
+	}
 	public static void main(String[] args) {
 		enqueue(5);
 		enqueue(4);
@@ -80,5 +92,8 @@ public class Queue {
 		peek();
 		System.out.println(isempty());
 		System.out.println(size());
+		enqueue(-21);
+		printlist();
+		System.out.println(sum());
 	}
 }
