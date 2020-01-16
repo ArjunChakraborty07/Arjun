@@ -10,32 +10,31 @@ public class Queue {
 			next=null;
 		}
 	}
-	static Node head;
+	static Node front;
+	static Node rear;
 	public static void enqueue(int data)
 	{
 		Node now=new Node(data);
-		if(head==null)
+		if(front==null)
 		{
-			head=now;
+			rear=now;
+			front=now;
 		}
 		else
 		{
-			Node last=head;
-			while(last.next!=null)
-			{
-				last=last.next;
-			}
+			Node last=rear;
 			last.next=now;
+			rear=now;
 		}
 		
 	}
 	public static void dequeue()
 	{
-		head=head.next;		
+		front=front.next;		
 	}
 	public static void printlist()
 	{
-		Node print=head;
+		Node print=front;
 		System.out.println("Queue");
 		while(print!=null)
 		{
@@ -47,11 +46,11 @@ public class Queue {
 	
 	public static void peek()
 	{
-		System.out.println(head.data);
+		System.out.println(front.data);
 	}
 	public static boolean isempty()
 	{
-		if(head==null)
+		if(front==null)
 		{
 			return true;
 		}
@@ -60,7 +59,7 @@ public class Queue {
 	public static int size()
 	{
 		int count=0;
-		Node ctr=head;
+		Node ctr=front;
 		while(ctr!=null)
 		{
 			count++;
@@ -71,7 +70,7 @@ public class Queue {
 	public static int sum()
 	{
 		System.out.println("Total: ");
-		Node curr=head;
+		Node curr=front;
 		int total=0;
 		while(curr!=null) 
 		{
@@ -82,9 +81,13 @@ public class Queue {
 	}
 	public static void main(String[] args) {
 		enqueue(5);
+		printlist();
 		enqueue(4);
+		printlist();
 		enqueue(1);
+		printlist();
 		enqueue(8);
+		printlist();
 		enqueue(7);
 		printlist();
 		dequeue();
