@@ -11,40 +11,51 @@ public class OrderedList {
 			next=null;
 		}
 	}
-	Node head;
-	private static void empty(OrderedList list)
+	static Node head;
+	private static void empty()
 	{
-		list.head=null;	
+		head=null;	
 	}
-	public static void add(int data, OrderedList list )
+	public static void add(int data )
 	{
+		int ctr=0;
 		Node newNode=new Node(data);
-		Node follow=list.head;
-		if(list.head==null||data<follow.data )
+		Node follow=head;
+		if(head==null||data<follow.data)
 		{
-			newNode.next=list.head;
-			list.head=newNode;
+			newNode.next=head;
+			head=newNode;
 		}		
 		else
 		{						
+			Node prev=head;
 			while(follow.next!=null )
 			{			
 					if(data>follow.data)			
 					{
+						prev=follow;
 						follow=follow.next;
 					}
+					if(data<follow.data)
+					{
+						ctr=1;
+						prev.next=newNode;
+						newNode.next=follow;
+						break;
+					}
 			}	
+			if(ctr==0)
 			follow.next=newNode;			
 		}			
 	}
-	public static void remove(int data, OrderedList list)
+	public static void remove(int data)
 	{
-		int pos=index(data,list);
-		Node follow=list.head;
+		int pos=index(data);
+		Node follow=head;
 		Node previous=null;
 		if(pos==0)
 		{			
-			list.head=follow.next;
+			head=follow.next;
 			follow=null;
 		}
 		else
@@ -61,9 +72,9 @@ public class OrderedList {
 			follow=null;
 		}
 	}
-	public static int index(int data, OrderedList list)
+	public static int index(int data)
 	{	int ctr=0;
-		Node currNode=list.head;
+		Node currNode=head;
 		while(currNode!=null)
 		{
 			if(currNode.data==data)
@@ -75,10 +86,10 @@ public class OrderedList {
 		}	
 		return -1;		
 	}
-	public static boolean search(int data, OrderedList list)
+	public static boolean search(int data)
 	{
 		boolean b=false;
-		Node curr=list.head;
+		Node curr=head;
 		while(curr!=null)
 		{
 			
@@ -94,19 +105,19 @@ public class OrderedList {
 		}
 		return b;
 	}
-	public static boolean isempty(OrderedList list)
+	public static boolean isempty()
 	{
-		if(list.head==null)
+		if(head==null)
 		{
 			return true;
 		}
 		return false;
 		
 	}
-	public static int size(OrderedList list)
+	public static int size()
 	{
 		int size=0;
-		Node curr=list.head;
+		Node curr=head;
 		while(curr!=null)
 		{
 			curr=curr.next;
@@ -114,10 +125,10 @@ public class OrderedList {
 		}
 		return size;
 	}
-	public static void pop(OrderedList list)
+	public static void pop()
 	{
 		Node behind=null;
-		Node curr=list.head;
+		Node curr=head;
 		while(curr.next!=null)
 		{
 			behind=curr;
@@ -126,14 +137,14 @@ public class OrderedList {
 		behind.next=null;
 		curr=null;
 	}
-	public static void popPos(int pos, OrderedList list)
+	public static void popPos(int pos)
 	{
-		Node curr=list.head;
+		Node curr=head;
 		Node follow=null;
 		
 		if(pos==1)
 		{
-			list.head=curr.next;
+			head=curr.next;
 			curr=null;
 		}
 		else
@@ -149,9 +160,9 @@ public class OrderedList {
 			curr=null;
 		}
 	}
-	public static void printlist(OrderedList list)
+	public static void printlist()
 	{		
-		Node currNode=list.head;
+		Node currNode=head;
 		System.out.print("Linkedlist: ");
 		if(currNode==null)
 		{
@@ -170,28 +181,51 @@ public class OrderedList {
 
 	public static void main(String args[]) throws IOException
 	{
-		OrderedList list=new OrderedList();
-		add(5,list);
-		printlist(list);
-		add(4,list);
-		printlist(list);
-		add(6,list);
-		printlist(list);
-		add(2,list);
-		add(8,list);
-		add(7,list);
-		printlist(list);
-		remove(5,list);
-		boolean b=search(9,list);
+		empty();
+		add(5);
+		printlist();
+		add(4);
+		printlist();
+		popPos(1);
+		remove(5);
+		printlist();
+		add(23);
+		printlist();
+		boolean b=search(9);
 		System.out.println(b);
-		printlist(list);
-		System.out.println(isempty(list));
-		System.out.println(size(list));
-		pop(list);
-		popPos(4, list);
-		printlist(list);
-		System.out.println(isempty(list));
-		Node currNode=list.head;
+		printlist();
+		
+		System.out.println(isempty());
+		System.out.println(size());
+		//System.out.println(head.data);
+		//pop();
+		
+		printlist();
+		
+		
+		
+		add(12);
+		
+		add(1);
+		add(15);
+		printlist();
+		add(14);
+		System.out.println("Print something");
+		printlist();
+		
+		add(2);
+		
+		add(8);
+		add(32);
+		add(71);
+		
+		add(11);
+		add(19);
+	
+		printlist();
+		System.out.println(isempty());
+		
+		Node currNode=head;
 		File f=new File("/home/admin1/Desktop/simple1.txt");
 		FileWriter fw=new FileWriter(f);
 		while(currNode!=null)

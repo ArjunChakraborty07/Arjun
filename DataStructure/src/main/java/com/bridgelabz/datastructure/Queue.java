@@ -96,6 +96,7 @@ public class Queue {
 		System.out.println(isempty());
 		System.out.println(size());
 		enqueue(-21);
+		enqueue(4);
 		printlist();
 		System.out.println(sum());
 	}
