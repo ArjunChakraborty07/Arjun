@@ -432,4 +432,39 @@ public class Utility {
 		System.out.println("Total number of notes needed are " + sum);// Output statement presenting the total number of
 																		// notes needed
 	}
+	public static int[][] primeRange(int N)
+	{
+		int arr[][]=new int[10][100];
+		int ar1[]=new int[1000];
+		utility.Utility.prime(N, ar1);
+		int c=0;
+		for(int i=0;i<10;i++)
+		{
+			int k=0;
+			for(int j=0;j<100;j++)
+			{
+				if(ar1[c]<j+i*100)
+				{			
+				arr[i][k]=ar1[c];
+				c++;
+				k++;
+				}
+			}
+		}
+		return arr;
+	}
+	public static void printTwoPrime(int arr[][])
+	{
+		for(int i=0;i<10;i++)
+		{
+			for(int j=0;j<100;j++)
+			{
+				if(arr[i][j]==0)
+					System.out.print(arr[i][j]+ "    ");
+				else
+					System.out.print(arr[i][j]+ "  ");
+			}
+			System.out.println("\n");
+		}
+	}
 }
