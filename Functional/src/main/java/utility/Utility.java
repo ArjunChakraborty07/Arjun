@@ -34,39 +34,25 @@ public class Utility {
 		System.out.print("\nPayment: " + payment);
 	}
 
-	public static void displayweek(int d, int m, int y) {// Method to display week
+	public static int displayweek(int d, int m, int y) {// Method to display week
 		int y0 = y - (14 - m) / 12;
 		int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
 		int m0 = m + 12 * ((14 - m) / 12) - 2;
 		int d0 = (d + x + (31 * m0) / 12) % 7;
-
-		switch (d0) { // Switch case implemented for generating week day
-		case 1:
-			System.out.println("Monday");
-			break;
-		case 2:
-			System.out.println("Tueday");
-			break;
-		case 3:
-			System.out.println("Wednesday");
-			break;
-		case 4:
-			System.out.println("Thrusday");
-			break;
-		case 5:
-			System.out.println("Friday");
-			break;
-		case 6:
-			System.out.println("Saturday");
-			break;
-		case 0:
-			System.out.println("Sunday");
-			break;
-		default:
-			System.out.println("Invalid data Check Code");//In case of wrong algorithm
-		}
+		return d0;
+	}	
+	public static boolean leapYear(int year)
+	{
+		if (year % 100 == 0) { // Checking the input year for leap year
+			if (year % 400 == 0)
+				return true;
+			else
+				return false;
+		} else if (year % 4 == 0)
+			return true; // return statement
+		else
+			return false;
 	}
-
 	public static void temperatureConversion(int ch, double T) {// Method for temperature conversion
 		if (ch == 1) {
 			double F = (T * 9 / 5) + 32; // Converting from celcius to fahrenheit
@@ -205,13 +191,16 @@ public class Utility {
 		}
 	}
 
-	public static void mergeSort(String arr[], int beg, int end) {// Method which is to be called for merge sort in the
+	public static String[] mergeSort(String arr[], int beg, int end) {// Method which is to be called for merge sort in the
 																	// main method for a string
 		if (beg < end) {
 			int mid = (beg + end) / 2;
-			mergeSort(arr, beg, mid);
-			merge(arr, beg, mid, end);
+			
+			mergeSort(arr, beg, mid); 
+			mergeSort(arr , mid+1, end); 		
+			merge(arr, beg, mid, end); 
 		}
+		return arr;
 	}
 
 	public static boolean AnagramStrings(String string1, String string2) {// Method for anagram strings of a boolean
@@ -285,7 +274,7 @@ public class Utility {
 				arr[j + 1] = arr[j];
 				j = j - 1;
 			}
-			arr[j + 1] = temp;// Storting statement
+			arr[j + 1] = temp;// Sorting statement
 		}
 		return arr;// Returning the sorted array
 	}
@@ -428,5 +417,40 @@ public class Utility {
 		}
 		System.out.println("Total number of notes needed are " + sum);// Output statement presenting the total number of
 																		// notes needed
+	}
+	public static int[][] primeRange(int N)
+	{
+		int arr[][]=new int[10][100];
+		int ar1[]=new int[1000];
+		utility.Utility.prime(N, ar1);
+		int c=0;
+		for(int i=0;i<10;i++)
+		{
+			int k=0;
+			for(int j=0;j<100;j++)
+			{
+				if(ar1[c]<j+i*100)
+				{			
+				arr[i][k]=ar1[c];
+				c++;
+				k++;
+				}
+			}
+		}
+		return arr;
+	}
+	public static void printTwoPrime(int arr[][])
+	{
+		for(int i=0;i<10;i++)
+		{
+			for(int j=0;j<100;j++)
+			{
+				if(arr[i][j]==0)
+					System.out.print(arr[i][j]+ "    ");
+				else
+					System.out.print(arr[i][j]+ "  ");
+			}
+			System.out.println("\n");
+		}
 	}
 }

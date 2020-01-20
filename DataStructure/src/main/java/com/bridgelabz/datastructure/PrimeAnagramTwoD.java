@@ -1,8 +1,7 @@
 package com.bridgelabz.datastructure;
 
 public class PrimeAnagramTwoD {
-	public static String[][] primeAnagramTwoD(int N) {
-		int x = 0;
+	public static String[] primeAnagramTwoD(int N) {
 		String arr1[] = new String[1000];
 		int arr[][] = utility.Utility.primeRange(N);
 		for (int i = 0; i < 10; i++) {
@@ -12,37 +11,45 @@ public class PrimeAnagramTwoD {
 				} else {
 					arr1[i] = Integer.toString(arr[i][j]);
 				}
-				x++;
 			}
 		}
 		twoDAnagram(arr1);
 		return arr1;
 	}
 
-	public static void twoDAnagram(String arr[]) {
-		String arr1[][] = new String[10][100];
-		int a = 0, c = 0;
-		int ctr = 0;
-		for (int i = 0; i < 1000; i++) {
+	public static String[][] twoDAnagram(String arr[]) {
+		int arr1[] = new int[1000];
+		int a = 0;
+		
+		for (int i = 0; arr[i]!=" "; i++) {
+			int ctr=0;
 			String x = arr[i];
-			for (int j = i + 1; j < 1000; j++) {
+			if(ctr>0)
+			{
+				arr1[a]=Integer.parseInt(x);
+			}			
+			for (int j = i + 1; arr[j]!=" "; j++) {
 				boolean b = utility.Utility.AnagramStrings(x, arr[j]);
-				if (b == true) {
+				if(b==true)
+				{
 					ctr++;
-					if (ctr == 1) {
-						arr1[a][c] = x;
-						ctr = 0;
-						c++;
-					}
-					arr1[a][c] = arr[j];
-					c++;
-					if (c == 99) {
-						c = 0;
-						a++;
-					}
 				}
 			}
 		}
+		a=0;
+		String arr2[][]=new String [10][1000];
+		for(int i=0;i<10;i++)
+		{
+			for(int j=0;j<1000;j++)
+			{
+				if(arr1[j]<100*(i+1))
+				{
+					arr2[i][j]=Integer.toString(arr1[a]);
+					a++;
+				}
+			}
+		}
+		return arr2;
 	}
 
 	public static void main(String args[]) {
@@ -50,12 +57,24 @@ public class PrimeAnagramTwoD {
 		System.out.print("Enter a Range: ");
 		int N = utility.Utility.returnInt();
 
-		String arr[][] = primeAnagramTwoD(N);
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 100; j++) {
-				System.out.print(arr[i][j] + " ");
+		String arr[] = primeAnagramTwoD(N);
+		String arr1[][]=twoDAnagram(arr);
+		for(int i=0;i<10;i++)
+		{
+			for(int j=0;j<100;j++)
+			{
+				if(arr1[i][j]=="0")
+					arr1[i][j]=" ";
+			}
+		}
+		for(int i=0;i<10;i++)
+		{
+			for(int j=0;j<100;j++)
+			{
+				System.out.print(arr1[i][j]);
 			}
 			System.out.println();
 		}
+		
 	}
 }

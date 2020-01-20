@@ -8,15 +8,15 @@ public class Leapyear {
 		System.out.println("Leap Year");
 		System.out.print("Enter a year for checking:");// Taking input from user
 		year = Utility.returnInt();
-		if (year % 100 == 0) { // Checking the input year for leap year
-			if (year % 400 == 0)
-				System.out.println("Leap Year");
-			else
-				System.out.println("Not a leap year");
-		} else if (year % 4 == 0)
-			System.out.println("Leap Year"); // Printing the output statement
+		boolean b=utility.Utility.leapYear(year); // Checking the input year for leap year
+		if(b==true)
+		{
+			System.out.println(" The year is a leap year");//Output Statement
+		}
 		else
-			System.out.println("Not a leap year");
+		{
+			System.out.println(" The year is not a leap year");//Output Statement
+		}
 	}
 
 }
