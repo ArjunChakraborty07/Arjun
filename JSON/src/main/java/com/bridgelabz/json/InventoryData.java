@@ -27,7 +27,6 @@ public class InventoryData {
 	public static void add(JSONArray inventory) throws JSONException	
 	{
 		JSONObject obj=new JSONObject();
-		int t=inventory.length();	
 		int weight, price;
 		String name;
 		System.out.println(" Enter a name:");
@@ -111,10 +110,11 @@ public class InventoryData {
 		JSONArray inventory = readFile();					
 		//add( inventory);			
 		//writeFile(inventory);  
-		//display(obj,inventory);	
+		display(obj,inventory);	
+		add( inventory);			
 		//delete("s",inventory);
 		//delete("q",inventory);
-		edit("Rice", inventory);
+		//edit("Rice", inventory);
 		writeFile(inventory); 
 		display(obj,inventory);	
 	}
