@@ -9,6 +9,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class StockManagement {
+	static File path1=new File("/home/admin1/Desktop/StockDetails.json");
+	static File path2=new File("/home/admin1/Desktop/CustomerDetails.json");
 
 	public static JSONArray readFile(File path) throws JSONException, ParseException, Throwable
 	{
@@ -24,7 +26,7 @@ public class StockManagement {
         file.append((array).toString());
         file.close();        
 	}	
-	public static void customerFile(JSONArray array) throws JSONException
+	public static void customerFile(JSONArray array1,JSONArray array2) throws JSONException, IOException
 	{
 		System.out.print(" Enter the customer name: ");
 		String name=utility.Utility.returnString();
@@ -32,14 +34,65 @@ public class StockManagement {
 		String company=utility.Utility.returnString();
 		System.out.print(" Desired number of shares:");
 		int shares=utility.Utility.returnInt();
+		utility.Utility.returnString();
 		JSONObject obj=new JSONObject();
-		int t=array.length();
-		obj.put("Name",name);
-		obj.put("Company",company);
-		obj.put("Shares",shares);
-		array.put(obj);
+		int ctr=0;
+		for(int i=0;i<array2.length();i++)
+		{
+			obj=(JSONObject) array2.getJSONObject(i);
+			if(obj.get("Name").equals(name))
+			{
+				ctr++;
+				if(obj.get("Company").equals(company))
+				{
+					int bal=0;
+					bal=obj.getInt("Shares")+shares;
+					obj.remove("Shares");
+					obj.put("Shares",bal);
+				}
+				else
+				{
+					obj=new JSONObject();
+					obj.put("Company", company);
+					obj.put("Shares", shares);
+				}
+			}
+		}
+		if(ctr==0)
+		{
+			obj=new JSONObject();
+			obj.put("Name",name);
+			obj.put("Company",company);
+			obj.put("Shares",shares);
+			array2.put(obj);
+		}
+		
+		if(array2.length()==0)
+		{
+			obj.put("Name",name);
+			obj.put("Company",company);
+			obj.put("Shares",shares);
+			array2.put(obj);
+		}
+		for(int i=0;i<array1.length();i++)
+		{
+			obj=(JSONObject) array1.getJSONObject(i);
+			if(obj.get("Company").equals(company))
+			{
+				if(obj.getInt("Shares")-shares>=0)
+				{
+					int bal=obj.getInt("Shares")-shares;
+					obj.remove("Shares");
+					obj.put("Shares",bal);
+				}
+				else			
+					System.out.print(" Insufficient shares");				
+			}
+		}
+		writeFile(path2,array2);
+		writeFile(path1,array1);
 	}
-	public static void initialStockMarket(JSONArray array) throws JSONException
+	public static void initialStockMarket(JSONArray array1) throws JSONException, IOException
 	{
 		JSONObject obj=new JSONObject();
 		System.out.print(" Enter the Company name: ");
@@ -52,30 +105,116 @@ public class StockManagement {
 		int price=utility.Utility.returnInt();		
 		utility.Utility.returnString();
 		obj.put("Price", price);
-		array.put(obj);
+		array1.put(obj);
+		writeFile(path1,array1);
 	}
-	public static void adjust(JSONArray array)
+	public static void sell(JSONArray array1,JSONArray array2, String name,String company, int shares) throws JSONException, IOException
 	{
-		JSONObject obj=null;
-		
+		JSONObject obj=null;	
+		int ctr=0;
+		for(int i=0;i<array2.length();i++)
+		{
+			obj=(JSONObject) array2.get(i);
+			if(obj.get("Name").equals(name)&&obj.get("Company").equals(company))
+			{
+				ctr++;
+				{
+					if(obj.getInt("Shares")-shares>=0)
+					{
+						int bal=obj.getInt("Shares")-shares;
+						obj.remove("Shares");
+						obj.put("Shares",bal);
+					}
+					else	
+					{
+						System.out.print(" Insufficient shares");
+						ctr=0;
+					}
+				}
+			}			
+		}	
+		if(ctr==0)
+		{
+			System.out.println("Customer/Company Not Found");
+		}
+		if(ctr!=0)
+		{
+		for(int i=0;i<array1.length();i++)
+		{
+			obj=(JSONObject) array1.getJSONObject(i);
+			if(obj.get("Company").equals(company))
+			{
+				int bal=obj.getInt("Shares")+shares;
+				obj.remove("Shares");
+				obj.put("Shares",bal);
+			}
+		}
+		writeFile(path2,array2);
+		writeFile(path1,array1);
+		}
 	}
-	public static void display(JSONArray array)
+	public static void display(JSONArray array) throws JSONException
 	{
-		System.out.println(array);
+		int i=0;
+		if(array.length()==0)
+		{
+			System.out.println("Empty File");
+		}
+		while(i!=array.length())
+		{
+			System.out.println(array.get(i));
+			i++;
+		}	
+	}
+	public static int totalValueOf(JSONArray array) throws JSONException
+	{
+		int total=0;
+		for(int i=0;i<array.length();i++)
+		{
+			JSONObject obj=(JSONObject) array.getJSONObject(i);
+			total=obj.getInt("Shares")*obj.getInt("Price");
+		}
+		return total;
+	}
+	public static int valueOf(JSONArray array1, JSONArray array2, String name) throws JSONException
+	{
+		int value=0;
+		for(int i=0;i<array2.length();i++)
+		{
+			JSONObject obj=(JSONObject) array2.getJSONObject(i);
+			if(obj.get("Name").equals(name))
+			{
+				for(int j=0;j<array1.length();j++)
+				{
+					JSONObject obj1=(JSONObject) array1.getJSONObject(i);
+					
+					if(obj.get("Company").equals(obj1.get("Company")))
+					{
+						value=obj1.getInt("Price");
+					}
+				}
+				value=value*obj.getInt("Shares");
+			}
+		}
+		return value;
 	}
 	public static void main(String[] args) throws Throwable {
-		JSONObject obj=null;
 		
 		
-		File path1=new File("/home/admin1/Desktop/StockDetails.json");
-		File path2=new File("/home/admin1/Desktop/CustomerDetails.json");
 		JSONArray array1=readFile(path1);
 		JSONArray array2=readFile(path2);
+		
 		//display(array1);
-		//writeFile(path1,array1);
-		//display(array1);	
-		customerFile(array2);
-		writeFile(path2,array2);
-		display(array2);
+		//display(array2);
+		
+		//sell(array1,array2,"Kote","Microsoft",2);
+		 
+		//System.out.println(" After sale of Kote, Amazon, 2");
+		//display(array2);
+		//display(array1);
+		int total=totalValueOf(array1);
+		System.out.println(total);
+		int value=valueOf(array1,array2,"Arjun");
+		System.out.println(value);
 	}
 }
