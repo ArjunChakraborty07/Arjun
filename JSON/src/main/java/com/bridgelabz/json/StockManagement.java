@@ -26,11 +26,11 @@ public class StockManagement {
         file.append((array).toString());
         file.close();        
 	}	
-	public static void customerFile(JSONArray array1,JSONArray array2) throws JSONException, IOException
+	public static void add(JSONArray array1,JSONArray array2) throws JSONException, IOException
 	{
 		System.out.print(" Enter the customer name: ");
 		String name=utility.Utility.returnString();
-		System.out.print(" Desired company:");
+		System.out.print(" Desired company :");
 		String company=utility.Utility.returnString();
 		System.out.print(" Desired number of shares:");
 		int shares=utility.Utility.returnInt();
