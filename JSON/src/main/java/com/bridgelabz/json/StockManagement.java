@@ -5,27 +5,12 @@ import java.io.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class StockManagement {
 	static File path1=new File("/home/admin1/Desktop/StockDetails.json");
 	static File path2=new File("/home/admin1/Desktop/CustomerDetails.json");
 
-	public static JSONArray readFile(File path) throws JSONException, ParseException, Throwable
-	{
-		FileReader file=new FileReader(path);
-		JSONArray array=new JSONArray();
-		JSONParser jparser=new JSONParser();
-		array = new JSONArray(jparser.parse(file).toString());
-		return array;
-	}
-	public static void writeFile( File path,JSONArray array) throws IOException
-	{
-		FileWriter file = new FileWriter(path);
-        file.append((array).toString());
-        file.close();        
-	}	
+	
 	public static void add(JSONArray array1,JSONArray array2) throws JSONException, IOException
 	{
 		System.out.print(" Enter the customer name: ");
@@ -89,8 +74,8 @@ public class StockManagement {
 					System.out.print(" Insufficient shares");				
 			}
 		}
-		writeFile(path2,array2);
-		writeFile(path1,array1);
+		utility.Utility.writeFile(path2,array2);
+		utility.Utility.writeFile(path1,array1);
 	}
 	public static void initialStockMarket(JSONArray array1) throws JSONException, IOException
 	{
@@ -106,7 +91,7 @@ public class StockManagement {
 		utility.Utility.returnString();
 		obj.put("Price", price);
 		array1.put(obj);
-		writeFile(path1,array1);
+		utility.Utility.writeFile(path1,array1);
 	}
 	public static void sell(JSONArray array1,JSONArray array2, String name,String company, int shares) throws JSONException, IOException
 	{
@@ -149,8 +134,8 @@ public class StockManagement {
 				obj.put("Shares",bal);
 			}
 		}
-		writeFile(path2,array2);
-		writeFile(path1,array1);
+		utility.Utility.writeFile(path2,array2);
+		utility.Utility.writeFile(path1,array1);
 		}
 	}
 	public static void display(JSONArray array) throws JSONException
@@ -201,8 +186,8 @@ public class StockManagement {
 	public static void main(String[] args) throws Throwable {
 		
 		
-		JSONArray array1=readFile(path1);
-		JSONArray array2=readFile(path2);
+		JSONArray array1=utility.Utility.readFile(path1);
+		JSONArray array2=utility.Utility.readFile(path2);
 		
 		//display(array1);
 		//display(array2);

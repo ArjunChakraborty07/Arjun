@@ -1,14 +1,11 @@
 package com.bridgelabz.json;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class CliniqueManagement {
@@ -68,21 +65,20 @@ public class CliniqueManagement {
 	}
 
 	public static void appointment(JSONArray array) throws JSONException, IOException, ParseException {
-		JSONArray readPatient = readFile(pathPatient);
-		JSONArray readDoctor = readFile(pathDoctor);
+		JSONArray readPatient = utility.Utility.readFile(pathPatient);
+		JSONArray readDoctor = utility.Utility.readFile(pathDoctor);
 		for (int i = 0; i < readPatient.length(); i++) {
 
 			JSONObject patients = (JSONObject) readPatient.get(i);
 			String departmentpatient = patients.getString("Department");
 			for (int k = 0; k < readDoctor.length(); k++) {
 
-				
 				JSONObject doctors = (JSONObject) readDoctor.get(k);
 				String departmentdoctor = doctors.getString("Department");
 				if (departmentdoctor.equals(departmentpatient)) {
-					JSONObject obj = new JSONObject();					
-					obj.accumulate("Names", doctors.getString("Name"));					
-					obj.accumulate("Names", patients.get("Name"));					
+					JSONObject obj = new JSONObject();
+					obj.accumulate("Names", doctors.getString("Name"));
+					obj.accumulate("Names", patients.get("Name"));
 					array.put(obj);
 				}
 			}
@@ -90,65 +86,48 @@ public class CliniqueManagement {
 
 	}
 
-	public static Object popularity() throws JSONException, IOException, ParseException
-	{
-		
-		JSONArray array=readFile(pathAppointment);
-		JSONObject obj1=new JSONObject();
-		JSONObject obj2=new JSONObject();
-		int arr[]=new int [array.length()];
-		for(int i=0;i<array.length();i++)
-		{
-			int ctr=0;
-			obj1=(JSONObject) array.get(i);
-			JSONArray dr=(JSONArray) obj1.get("Names");
-			for( int j=0;j<array.length();j++)
-			{
-				obj2=(JSONObject) array.get(j);
-				JSONArray pt=obj2.getJSONArray("Names");
-				if(dr.get(0).equals(pt.get(0)))
-				{
+	public static Object popularity() throws JSONException, IOException, ParseException {
+
+		JSONArray array = utility.Utility.readFile(pathAppointment);
+		JSONObject obj1 = new JSONObject();
+		JSONObject obj2 = new JSONObject();
+		int arr[] = new int[array.length()];
+		for (int i = 0; i < array.length(); i++) {
+			int ctr = 0;
+			obj1 = (JSONObject) array.get(i);
+			JSONArray dr = (JSONArray) obj1.get("Names");
+			for (int j = 0; j < array.length(); j++) {
+				obj2 = (JSONObject) array.get(j);
+				JSONArray pt = obj2.getJSONArray("Names");
+				if (dr.get(0).equals(pt.get(0))) {
 					ctr++;
 				}
 			}
-			arr[i]=ctr;
+			arr[i] = ctr;
 		}
-		int max=arr[0];
-		int index=0;
-		for(int i=0;i<array.length();i++)
-		{	
-			if(arr[i]>max)
-				index=i;				
+		int max = arr[0];
+		int index = 0;
+		for (int i = 0; i < array.length(); i++) {
+			if (arr[i] > max)
+				index = i;
 		}
-		obj1=(JSONObject) array.get(index);
-		JSONArray arrpopularity=(JSONArray) obj1.get("Names");
-		
-		return arrpopularity.get(0);	
-						
-	}
-	public static void writeFile(File path, JSONArray array) throws IOException {
-		FileWriter file = new FileWriter(path);
-		file.append(array.toString());
-		file.close();
-	}
+		obj1 = (JSONObject) array.get(index);
+		JSONArray arrpopularity = (JSONArray) obj1.get("Names");
 
-	public static JSONArray readFile(File path) throws JSONException, IOException, ParseException {
-		JSONParser jsonParser = new JSONParser();
-		FileReader reader = new FileReader(path);
-		JSONArray doctorfile = new JSONArray(jsonParser.parse(reader).toString());
-		return doctorfile;
+		return arrpopularity.get(0);
+
 	}
 
 	public static void main(String args[]) throws JSONException, IOException, ParseException {
 		JSONArray arrayDoctor = new JSONArray();
 		doctorFile(arrayDoctor);
-		writeFile(pathDoctor, arrayDoctor);
+		utility.Utility.writeFile(pathDoctor, arrayDoctor);
 		JSONArray arrayPatient = new JSONArray();
 		patientFile(arrayPatient);
-		writeFile(pathPatient, arrayPatient);
+		utility.Utility.writeFile(pathPatient, arrayPatient);
 		JSONArray arrayAppointment = new JSONArray();
 		appointment(arrayAppointment);
-		writeFile(pathAppointment, arrayAppointment);
+		utility.Utility.writeFile(pathAppointment, arrayAppointment);
 		System.out.println(arrayAppointment);
 		System.out.println(popularity());
 	}
