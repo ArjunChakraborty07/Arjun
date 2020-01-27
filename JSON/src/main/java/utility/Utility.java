@@ -23,6 +23,7 @@ public class Utility {
 	public static int returnLong() {// Method returning integer value
 		return (int) sc.nextLong();
 	}
+
 	public static double returnDouble() {// Method returning double value
 		return sc.nextDouble();
 	}
@@ -52,9 +53,9 @@ public class Utility {
 		int m0 = m + 12 * ((14 - m) / 12) - 2;
 		int d0 = (d + x + (31 * m0) / 12) % 7;
 		return d0;
-	}	
-	public static boolean leapYear(int year)
-	{
+	}
+
+	public static boolean leapYear(int year) {
 		if (year % 100 == 0) { // Checking the input year for leap year
 			if (year % 400 == 0)
 				return true;
@@ -65,6 +66,7 @@ public class Utility {
 		else
 			return false;
 	}
+
 	public static void temperatureConversion(int ch, double T) {// Method for temperature conversion
 		if (ch == 1) {
 			double F = (T * 9 / 5) + 32; // Converting from celcius to fahrenheit
@@ -90,7 +92,7 @@ public class Utility {
 		int[] binary = new int[8];
 		int index = 7;
 		while (n > 0) {
-			binary[index] = n % 2;//Storing the binary value in a integer array
+			binary[index] = n % 2;// Storing the binary value in a integer array
 			n = n / 2;
 			index--;
 		}
@@ -203,14 +205,15 @@ public class Utility {
 		}
 	}
 
-	public static String[] mergeSort(String arr[], int beg, int end) {// Method which is to be called for merge sort in the
-																	// main method for a string
+	public static String[] mergeSort(String arr[], int beg, int end) {// Method which is to be called for merge sort in
+																		// the
+																		// main method for a string
 		if (beg < end) {
 			int mid = (beg + end) / 2;
-			
-			mergeSort(arr, beg, mid); 
-			mergeSort(arr , mid+1, end); 		
-			merge(arr, beg, mid, end); 
+
+			mergeSort(arr, beg, mid);
+			mergeSort(arr, mid + 1, end);
+			merge(arr, beg, mid, end);
 		}
 		return arr;
 	}
@@ -246,7 +249,7 @@ public class Utility {
 																						// using generic
 		for (int i = 0; i < arr.length - 1; i++) {
 			int min = i;
-			for (int j = i + 1; j < arr.length; j++) {//Iterative technique to sort
+			for (int j = i + 1; j < arr.length; j++) {// Iterative technique to sort
 				if (arr[j].compareTo(arr[min]) < 0) {
 					min = j;
 				}
@@ -430,41 +433,37 @@ public class Utility {
 		System.out.println("Total number of notes needed are " + sum);// Output statement presenting the total number of
 																		// notes needed
 	}
-	public static int[][] primeRange(int N)
-	{
-		int arr[][]=new int[10][100];
-		int ar1[]=new int[1000];
+
+	public static int[][] primeRange(int N) {
+		int arr[][] = new int[10][100];
+		int ar1[] = new int[1000];
 		utility.Utility.prime(N, ar1);
-		int c=0;
-		for(int i=0;i<10;i++)
-		{
-			int k=0;
-			for(int j=0;j<100;j++)
-			{
-				if(ar1[c]<=j+i*100)
-				{			
-				arr[i][k]=ar1[c];
-				c++;
-				k++;
+		int c = 0;
+		for (int i = 0; i < 10; i++) {
+			int k = 0;
+			for (int j = 0; j < 100; j++) {
+				if (ar1[c] <= j + i * 100) {
+					arr[i][k] = ar1[c];
+					c++;
+					k++;
 				}
 			}
 		}
 		return arr;
 	}
-	public static void printTwoPrime(int arr[][])
-	{
-		for(int i=0;i<10;i++)
-		{
-			for(int j=0;j<100;j++)
-			{
-				if(arr[i][j]==0)
-					System.out.print(arr[i][j]+ "    ");
+
+	public static void printTwoPrime(int arr[][]) {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 100; j++) {
+				if (arr[i][j] == 0)
+					System.out.print(arr[i][j] + "    ");
 				else
-					System.out.print(arr[i][j]+ "  ");
+					System.out.print(arr[i][j] + "  ");
 			}
 			System.out.println("\n");
 		}
 	}
+
 	public static void writeFile(File path, JSONArray array) throws IOException {
 		FileWriter file = new FileWriter(path);
 		file.append(array.toString());
