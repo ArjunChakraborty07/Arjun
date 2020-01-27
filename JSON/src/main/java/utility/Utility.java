@@ -20,6 +20,9 @@ public class Utility {
 		return sc.nextInt();
 	}
 
+	public static int returnLong() {// Method returning integer value
+		return (int) sc.nextLong();
+	}
 	public static double returnDouble() {// Method returning double value
 		return sc.nextDouble();
 	}
