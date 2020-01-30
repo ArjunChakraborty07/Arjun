@@ -13,8 +13,13 @@ import com.bridgelabz.repository.Repository;
 
 public class Service implements AddressBook{
 	static File path = new File("/home/admin1/Desktop/AddressBook.json");
+	
 	@Override
 	public void addAddress() throws JSONException, IOException, ParseException {
+		try {
+		
+		
+		
 		JSONArray array = Repository.readFile(path);
 		JSONObject obj = new JSONObject();
 		
@@ -44,11 +49,18 @@ public class Service implements AddressBook{
 		obj.put("Phone No", phone);
 		array.put(obj);
 		Repository.writeFile(path, array);
-		
+	
+		}
+		catch(Exception e)
+		{
+			System.out.println("Invalid Input");
+		}
 	}
 
 	@Override
-	public void editAddress() throws JSONException, IOException, ParseException {
+	public void editAddress() throws JSONException, IOException, ParseException  {
+		
+		try {
 		int ctr = 0;
 		
 		System.out.print(" Enter the First Name: ");
@@ -61,12 +73,19 @@ public class Service implements AddressBook{
 		for (int i = 0; i < array.length(); i++) {
 			obj = (JSONObject) array.get(i);
 			if (obj.get("First Name").equals(fname)) {
-				System.out.print("Enter the element to edit:");
+				System.out.print(" Enter the element to edit:");
 				String key = Utility.returnString();
-				obj.remove(key);
-				System.out.print("Enter the updated element:");
-				String add = Utility.returnString();
-				obj.put(key, add);
+				if(key.equals("First Name")||(key.equals("Last Name")))
+				{
+					System.out.println("Name cannot be edited");
+				}
+				else
+				{
+					obj.remove(key);
+					System.out.print(" Enter the updated element:");
+					String add = Utility.returnString();
+					obj.put(key, add);
+				}
 
 			} else {
 				ctr++;
@@ -77,13 +96,17 @@ public class Service implements AddressBook{
 			System.out.println("Name Not Found");
 		}
 		Repository.writeFile(path, array);
-
-		
 	}
+	catch(Exception e)
+	{
+		System.out.println("Invalid Input");
+	}
+		}
+		
 
 	@Override
 	public void deleteAddress() throws Exception {
-		
+		try {
 		System.out.print(" Enter the First Name: ");
 		String fname = Utility.returnString();
 		
@@ -97,11 +120,17 @@ public class Service implements AddressBook{
 			}
 		}
 		Repository.writeFile(path, array);
-		
+	}
+	catch(Exception e)
+	{
+		System.out.println("Invalid Input");
+	}
 	}
 
 	@Override
 	public void sortZIP() throws IOException, JSONException, ParseException {
+		
+		try {
 		JSONArray array = Repository.readFile(path);
 		JSONArray sortedarray = new JSONArray();
 		JSONObject obj = new JSONObject();
@@ -122,11 +151,18 @@ public class Service implements AddressBook{
 			}
 		}
 		Repository.writeFile(path, sortedarray);
-		
+	}
+	catch(Exception e)
+	{
+		System.out.println("Invalid Input");
+	}
 	}
 
 	@Override
 	public void sortName() throws JSONException, IOException, ParseException {
+		
+		try {
+		
 		JSONArray array = Repository.readFile(path);
 		JSONArray sortedarray = new JSONArray();
 		JSONObject obj = new JSONObject();
@@ -148,11 +184,17 @@ public class Service implements AddressBook{
 
 		}
 		Repository.writeFile(path, sortedarray);
-		
+	}
+	catch(Exception e)
+	{
+		System.out.println("Invalid Input");
+	}
 	}
 
 	@Override
 	public void display() throws JSONException, IOException, ParseException {
+		
+		try {
 		JSONArray array = Repository.readFile(path);
 		JSONObject obj=new JSONObject();
 		for(int i=0;i<array.length();i++)
@@ -167,8 +209,11 @@ public class Service implements AddressBook{
 			System.out.println("|Phone Number: "+obj.getString("Phone No"));
 			System.out.println("________________________________________________");
 		}
-		
 	}
-
+	catch(Exception e)
+	{
+		System.out.println("Invalid Input");
+	}
+	}
 	
 }

@@ -4,8 +4,9 @@ import com.addressbook.utility.Utility;
 import com.bridgelabz.service.Service;
 
 public class Controller {
-	public static void main(String args[]) throws Exception {
-
+	public static void main(String args[]) {
+		try
+		{
 		Service obj=new Service();
 		int s = 0;
 		while (s == 0) {
@@ -19,21 +20,22 @@ public class Controller {
 			System.out.println("-------------------");
 			int ch = Utility.returnInt();
 			Utility.returnString();
+			
 			switch (ch) {
 			case 1:
 				
 				obj.addAddress();
-				obj.display();
+				
 				break;
 			case 2:				
 
 				obj.editAddress();
-				obj.display();
+				
 				break;
 			case 3:
 				
 				obj.deleteAddress();
-				obj.display();
+				
 				break;
 			case 4:
 				
@@ -42,17 +44,26 @@ public class Controller {
 			case 5:
 				
 				obj.sortZIP();
-				obj.display();
+				
 				break;
 			case 6:
 				
 				obj.sortName();
-				obj.display();
+				
+				break;
+			case 7:
+				
+				s++;
 				break;
 			default:
 				
-				s++;
+				s=0;
 			}
 		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("Invalid Input");
+		}			
 	}
 }
