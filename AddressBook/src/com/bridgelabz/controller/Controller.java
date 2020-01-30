@@ -9,53 +9,48 @@ public class Controller {
 		Service obj=new Service();
 		int s = 0;
 		while (s == 0) {
-			System.out.print("1. Add address 2. Edit Address 3. Delete Address 4. Display 5. ZIPSort 6. NameSort"
-					+ "\nEnter a choice of operation:");
+			System.out.println("___________________");
+			System.out.println("|1. Add address   |");
+			System.out.println("|2. Edit Address  |");
+			System.out.println("|3. Delete Address|");
+			System.out.println("|4. Display       |");
+			System.out.println("|5. ZIPSort       |");
+			System.out.println("|6. NameSort      |");
+			System.out.println("-------------------");
 			int ch = Utility.returnInt();
 			Utility.returnString();
 			switch (ch) {
 			case 1:
-				System.out.print(" Enter the First Name: ");
-				String fname = Utility.returnString();
-				System.out.print(" Enter the Last Name: ");
-				String lname = Utility.returnString();
-				System.out.print(" Enter Address: ");
-				String address = Utility.returnString();
-				System.out.print(" Enter City: ");
-				String city = Utility.returnString();
-				System.out.print(" Enter State: ");
-				String state =Utility.returnString();
-				System.out.print(" Enter ZIP: ");
-				int zip = Utility.returnInt();
-				Utility.returnString();
-				System.out.print(" Enter Phone Number: ");
-				String phone = Utility.returnString();
-				obj.addAddress(fname, lname, address, city, state, zip, phone);
+				
+				obj.addAddress();
 				obj.display();
 				break;
-			case 2:
-				System.out.print(" Enter the First Name: ");
-				fname = Utility.returnString();
+			case 2:				
 
-				obj.editAddress(fname);
+				obj.editAddress();
 				obj.display();
 				break;
 			case 3:
-				System.out.print(" Enter the First Name: ");
-				fname = Utility.returnString();
-				obj.deleteAddress(fname);
+				
+				obj.deleteAddress();
 				obj.display();
 				break;
 			case 4:
+				
 				obj.display();
 				break;
 			case 5:
+				
 				obj.sortZIP();
 				obj.display();
+				break;
 			case 6:
-				obj.	sortName();
+				
+				obj.sortName();
 				obj.display();
+				break;
 			default:
+				
 				s++;
 			}
 		}

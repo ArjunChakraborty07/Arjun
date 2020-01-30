@@ -14,10 +14,27 @@ import com.bridgelabz.repository.Repository;
 public class Service implements AddressBook{
 	static File path = new File("/home/admin1/Desktop/AddressBook.json");
 	@Override
-	public void addAddress(String fname, String lname, String address, String city, String state, int zip,
-			String phone) throws JSONException, IOException, ParseException {
+	public void addAddress() throws JSONException, IOException, ParseException {
 		JSONArray array = Repository.readFile(path);
 		JSONObject obj = new JSONObject();
+		
+		System.out.print(" Enter the First Name: ");
+		String fname = Utility.returnString();
+		System.out.print(" Enter the Last Name: ");
+		String lname = Utility.returnString();
+		System.out.print(" Enter Address: ");
+		String address = Utility.returnString();
+		System.out.print(" Enter City: ");
+		String city = Utility.returnString();
+		System.out.print(" Enter State: ");
+		String state =Utility.returnString();
+		System.out.print(" Enter ZIP: ");
+		int zip = Utility.returnInt();
+		Utility.returnString();
+		System.out.print(" Enter Phone Number: ");
+		String phone = Utility.returnString();
+		
+		
 		obj.put("First Name", fname);
 		obj.put("Last Name", lname);
 		obj.put("Address", address);
@@ -31,8 +48,13 @@ public class Service implements AddressBook{
 	}
 
 	@Override
-	public void editAddress(String fname) throws JSONException, IOException, ParseException {
+	public void editAddress() throws JSONException, IOException, ParseException {
 		int ctr = 0;
+		
+		System.out.print(" Enter the First Name: ");
+		String fname = Utility.returnString();
+		
+		
 		JSONArray array = Repository.readFile(path);
 		JSONObject obj = new JSONObject();
 
@@ -60,7 +82,12 @@ public class Service implements AddressBook{
 	}
 
 	@Override
-	public void deleteAddress(String fname) throws Exception {
+	public void deleteAddress() throws Exception {
+		
+		System.out.print(" Enter the First Name: ");
+		String fname = Utility.returnString();
+		
+		
 		JSONArray array =Repository.readFile(path);
 		JSONObject obj = new JSONObject();
 		for (int i = 0; i < array.length(); i++) {
@@ -93,7 +120,6 @@ public class Service implements AddressBook{
 					sortedarray.put(obj);
 				}
 			}
-
 		}
 		Repository.writeFile(path, sortedarray);
 		
@@ -128,8 +154,21 @@ public class Service implements AddressBook{
 	@Override
 	public void display() throws JSONException, IOException, ParseException {
 		JSONArray array = Repository.readFile(path);
-		System.out.println(array);
+		JSONObject obj=new JSONObject();
+		for(int i=0;i<array.length();i++)
+		{
+			obj=(JSONObject) array.get(i);
+			System.out.println("________________________________________________");
+			System.out.println("|Name: "+obj.getString("First Name")+" "+obj.getString("Last Name"));
+			System.out.println("|Address: "+obj.getString("Address"));
+			System.out.println("|City: "+obj.getString("City"));
+			System.out.println("|State: "+obj.getString("State"));
+			System.out.println("|ZIP Code: "+obj.getInt("ZIP code"));
+			System.out.println("|Phone Number: "+obj.getString("Phone No"));
+			System.out.println("________________________________________________");
+		}
 		
 	}
 
+	
 }

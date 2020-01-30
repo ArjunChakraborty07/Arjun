@@ -1,17 +1,10 @@
 package com.addressbook.utility;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 
 public class Utility {
 	private static final Scanner sc = new Scanner(System.in);// Scanner object to take input for all programs
