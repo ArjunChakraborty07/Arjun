@@ -8,12 +8,13 @@ import org.json.JSONException;
 import org.json.simple.parser.ParseException;
 
 import com.inventory.service.InventoryServiceClass;
+import com.inventory.service.InventoryServiceInterface;
 import com.inventory.utility.Utility;
 
 public class InventoryController {
 	public static void main(String[] args) throws JSONException, IOException, ParseException {
 		
-		InventoryServiceClass obj= new InventoryServiceClass();
+		InventoryServiceInterface obj= new InventoryServiceClass();
 		int ctr=0;
 		while(ctr==0)
 		{

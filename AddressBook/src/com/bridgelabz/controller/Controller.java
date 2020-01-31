@@ -10,14 +10,7 @@ public class Controller {
 		Service obj=new Service();
 		int s = 0;
 		while (s == 0) {
-			System.out.println("___________________");
-			System.out.println("|1. Add address   |");
-			System.out.println("|2. Edit Address  |");
-			System.out.println("|3. Delete Address|");
-			System.out.println("|4. Display       |");
-			System.out.println("|5. ZIPSort       |");
-			System.out.println("|6. NameSort      |");
-			System.out.println("-------------------");
+		
 			int ch = Utility.returnInt();
 			Utility.returnString();
 			
