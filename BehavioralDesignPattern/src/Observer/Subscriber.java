@@ -13,9 +13,9 @@ public class Subscriber implements Observer
 	{
 		String msg=(String) topic.getUpdate(this);
 		if(msg==null)
-			System.out.println("no new updates");
+			System.out.println(this.name+" no new updates");
 		else
-			System.out.println("consuming message "+msg);
+			System.out.println(this.name+" consuming message "+msg);
 		
 	}
 
