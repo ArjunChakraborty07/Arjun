@@ -41,15 +41,7 @@ public class ServletPage extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			try {
-				 DatabaseOperation.dataQuary(res);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			
 		
 	}

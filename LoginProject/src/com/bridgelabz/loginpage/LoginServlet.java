@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet{
 		obj.setEid(email);
 		obj.setPwd(password);
 		try {
-			DatabaseOperation.login(obj,req,res);
+			DatabaseOperation.validation(obj,req,res);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }

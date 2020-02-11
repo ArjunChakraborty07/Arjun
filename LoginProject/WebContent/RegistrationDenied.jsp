@@ -6,14 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<script type="text/javascript">
-	alert("Registration Successful");
-	<%
-	response.sendRedirect("page.html");
-	%>
-</script>
-
 <body>
+<script type="text/javascript"> 
+alert("Registration Denied");
 
+</script>
+<%
+response.sendRedirect("page.html");
+%>
 </body>
 </html>
