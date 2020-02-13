@@ -1,6 +1,7 @@
 package LoginServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -36,6 +37,8 @@ public class ServletRegister extends  HttpServlet{
 			{
 				HttpSession session=req.getSession();
 				session.setAttribute("username",uname);
+				PrintWriter out=res.getWriter();
+				out.println("<script type='text/javascript'> alert('Registration Successful')	Location='RegistrationPage.jsp'</script>");
 				RequestDispatcher rd=req.getRequestDispatcher("LoginPage.jsp");
 				rd.forward(req, res);
 			}

@@ -1,6 +1,7 @@
 package LoginServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -24,6 +25,7 @@ public class ServletLogin extends  HttpServlet{
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
 	{
+		PrintWriter out=res.getWriter();		
 		String email=req.getParameter("email");
 		String pwd=req.getParameter("password");
 		Repository obj = new Repository();		
@@ -35,10 +37,10 @@ public class ServletLogin extends  HttpServlet{
 			{
 				HttpSession session=req.getSession();
 				session.setAttribute("data", rs);		
+				out.println("<script type='text/javascript'> alert('Login Successfull') Location='AccountPage.jsp'	</script>");
 				RequestDispatcher rd=req.getRequestDispatcher("AccountPage.jsp");				
-				rd.forward(req, res);
-				
-			}
+				rd.forward(req, res);			
+			}			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
