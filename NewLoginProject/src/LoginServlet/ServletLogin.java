@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,17 +31,24 @@ public class ServletLogin extends  HttpServlet{
 		String pwd=req.getParameter("password");
 		Repository obj = new Repository();		
 		obj.setPwd(pwd);
-		obj.setEmail(email);
+		obj.setEmail(email);		
 		try {
 			ResultSet rs=DisplayData.dispalyData(obj);
 			if(rs!=null)
 			{
+				Cookie c1=new Cookie("check","true");				
+				res.addCookie(c1);								
 				HttpSession session=req.getSession();
 				session.setAttribute("data", rs);		
-				out.println("<script type='text/javascript'> alert('Login Successfull') Location='AccountPage.jsp'	</script>");
-				RequestDispatcher rd=req.getRequestDispatcher("AccountPage.jsp");				
-				rd.forward(req, res);			
-			}			
+				out.println("<html><head></head><body onload=\"alert('Login Successfuld')\"></body></html>");
+				res.sendRedirect("AccountPage.jsp");
+//				RequestDispatcher rd=req.getRequestDispatcher("AccountPage.jsp");				
+//				rd.forward(req, res);						
+			}		
+			else
+				out.println("<html><head></head><body onload=\"alert('Login Denied')\"></body></html>");
+				RequestDispatcher rd=req.getRequestDispatcher("LoginPage.jsp");				
+				rd.include(req, res);	
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

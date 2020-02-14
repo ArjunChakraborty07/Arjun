@@ -38,7 +38,7 @@ public class ServletRegister extends  HttpServlet{
 				HttpSession session=req.getSession();
 				session.setAttribute("username",uname);
 				PrintWriter out=res.getWriter();
-				out.println("<script type='text/javascript'> alert('Registration Successful')	Location='RegistrationPage.jsp'</script>");
+				out.println("<html><head></head><body onload=\"alert('Registration Successful')\"></body></html>");
 				RequestDispatcher rd=req.getRequestDispatcher("LoginPage.jsp");
 				rd.forward(req, res);
 			}

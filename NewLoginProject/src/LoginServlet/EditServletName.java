@@ -23,7 +23,7 @@ public class EditServletName extends HttpServlet {
 	public Repository obj=null;
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-							
+				
 		String pwd=null;;
 		pwd=req.getParameter("name");				
 		req.setAttribute("name",pwd);

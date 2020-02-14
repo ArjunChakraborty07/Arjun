@@ -15,6 +15,12 @@
 <p>Email ID: <input type="text" name="email" placeholder="Enter your Email Id" Required><br><br>
 <p>Password: <input type="password" name="password" placeholder="Set a Password" Required><br><br>
 <p><button type="submit" value="Submit">LogIn</button>
+
+<%
+	String check="true";
+	Cookie cookie=new Cookie("check",check);
+	response.addCookie(cookie);
+%>
 </form>
 </div>
 </body>

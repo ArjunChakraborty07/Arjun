@@ -12,11 +12,15 @@
 <meta charset="UTF-8">
 <title>Account Page</title>
 </head>
-
-	<%!
+	<%-- <%!
 	HttpSession session=null;		
-	%>
+	%> --%>
+	
 <body>
+<%response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+	if(session.getAttribute("data")==null)
+		response.sendRedirect("LoginPage.jsp");
+%>
 <div align="center">
 <h2>Welcome</h2>
 

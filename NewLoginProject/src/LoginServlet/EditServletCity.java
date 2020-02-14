@@ -1,7 +1,6 @@
 package LoginServlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 
@@ -29,8 +28,6 @@ public class EditServletCity extends HttpServlet {
 		req.setAttribute("city",pwd);
 		
 		try {
-			PrintWriter out=res.getWriter();
-			out.println("<script type='text/javascript'> alert('City Changed') Location='EditData.jsp'	</script>");
 			EditDataBase.editDataCity(req, res);
 			
 		} catch (ClassNotFoundException | SQLException e) {

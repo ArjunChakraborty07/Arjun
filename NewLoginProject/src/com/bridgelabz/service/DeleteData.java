@@ -35,6 +35,6 @@ public class DeleteData {
 		PrintWriter out=res.getWriter();
 		out.println("<script type='text/javascript'> alert('Account Deleted') Location='RegistrationPage.jsp'	</script>");
 		RequestDispatcher rd=req.getRequestDispatcher("RegistrationPage.jsp");
-		rd.forward(req, res);
+		rd.include(req, res);
 	}
 }

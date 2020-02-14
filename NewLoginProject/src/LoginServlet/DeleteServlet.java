@@ -21,7 +21,7 @@ public class DeleteServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
 	{
 		try {
-			
+			res.setHeader("cache-control","no-cache,no-store,must-revalidate");
 			DeleteData.deleteData(req, res);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

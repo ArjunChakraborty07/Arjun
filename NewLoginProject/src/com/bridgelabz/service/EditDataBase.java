@@ -1,6 +1,7 @@
 package com.bridgelabz.service;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 
 import javax.servlet.RequestDispatcher;
@@ -17,6 +18,7 @@ public class EditDataBase {
 
 		HttpSession session = req.getSession();
 		ResultSet rs = (ResultSet) session.getAttribute("data");
+		System.out.println("check");
 		String email = rs.getString(3);
 		String pwd = (String) req.getAttribute("password");
 		// Setting data to process
@@ -50,8 +52,10 @@ public class EditDataBase {
 		/*
 		 * 
 		 */
-		RequestDispatcher rd = req.getRequestDispatcher("AccountPage.jsp");
-		rd.forward(req, res);
+		PrintWriter out=res.getWriter();
+		out.println("<html><head></head><body onload=\"alert('Update Successful')\"></body></html>");
+		RequestDispatcher rd = req.getRequestDispatcher("EditData.jsp");
+		rd.include(req, res);
 		// Dispatching to the next required page
 	}
 	
@@ -92,8 +96,10 @@ public class EditDataBase {
 		/*
 		 * 
 		 */
-		RequestDispatcher rd = req.getRequestDispatcher("AccountPage.jsp");
-		rd.forward(req, res);
+		PrintWriter out=res.getWriter();
+		out.println("<html><head></head><body onload=\"alert('Update Successful')\"></body></html>");
+		RequestDispatcher rd = req.getRequestDispatcher("EditData.jsp");
+		rd.include(req, res);
 		// Dispatching to the next required page
 	}
 	
@@ -134,8 +140,10 @@ public class EditDataBase {
 		/*
 		 * 
 		 */
-		RequestDispatcher rd = req.getRequestDispatcher("AccountPage.jsp");
-		rd.forward(req, res);
+		PrintWriter out=res.getWriter();
+		out.println("<html><head></head><body onload=\"alert('Update Successful')\"></body></html>");
+		RequestDispatcher rd = req.getRequestDispatcher("EditData.jsp");
+		rd.include(req, res);
 		// Dispatching to the next required page
 	}
 	
@@ -176,8 +184,10 @@ public class EditDataBase {
 		/*
 		 * 
 		 */
-		RequestDispatcher rd = req.getRequestDispatcher("AccountPage.jsp");
-		rd.forward(req, res);
+		PrintWriter out=res.getWriter();
+		out.println("<html><head></head><body onload=\"alert('Update Successful')\"></body></html>");
+		RequestDispatcher rd = req.getRequestDispatcher("EditData.jsp");
+		rd.include(req, res);
 		// Dispatching to the next required page
 	}
 }
