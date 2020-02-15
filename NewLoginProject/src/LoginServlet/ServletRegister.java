@@ -24,6 +24,9 @@ public class ServletRegister extends  HttpServlet{
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
 	{
+		res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+	    res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+	    res.setHeader("expires","0"); //Proxies
 		String uname=req.getParameter("uname");
 		String pwd=req.getParameter("password");
 		String email=req.getParameter("email");
@@ -39,8 +42,8 @@ public class ServletRegister extends  HttpServlet{
 				session.setAttribute("username",uname);
 				PrintWriter out=res.getWriter();
 				out.println("<html><head></head><body onload=\"alert('Registration Successful')\"></body></html>");
-				RequestDispatcher rd=req.getRequestDispatcher("LoginPage.jsp");
-				rd.forward(req, res);
+				RequestDispatcher rd=req.getRequestDispatcher("RegistrationPage.jsp");
+				rd.include(req, res);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

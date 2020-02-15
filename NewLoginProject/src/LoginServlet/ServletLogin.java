@@ -26,28 +26,33 @@ public class ServletLogin extends  HttpServlet{
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
 	{
+		res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+	    res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+	    res.setHeader("expires","0"); //Proxies
 		PrintWriter out=res.getWriter();		
 		String email=req.getParameter("email");
 		String pwd=req.getParameter("password");
 		Repository obj = new Repository();		
 		obj.setPwd(pwd);
-		obj.setEmail(email);		
+		obj.setEmail(email);	
 		try {
 			ResultSet rs=DisplayData.dispalyData(obj);
 			if(rs!=null)
-			{
-				Cookie c1=new Cookie("check","true");				
-				res.addCookie(c1);								
+			{							
 				HttpSession session=req.getSession();
-				session.setAttribute("data", rs);		
+				session.setAttribute("data", rs);
+				session.setAttribute("check", email);
+				
+				
+				Cookie cookie= new Cookie("email",email);
+				res.addCookie(cookie);
+				
 				out.println("<html><head></head><body onload=\"alert('Login Successfuld')\"></body></html>");
-				res.sendRedirect("AccountPage.jsp");
-//				RequestDispatcher rd=req.getRequestDispatcher("AccountPage.jsp");				
-//				rd.forward(req, res);						
+				res.sendRedirect("AccountPage.jsp");			
 			}		
 			else
 				out.println("<html><head></head><body onload=\"alert('Login Denied')\"></body></html>");
-				RequestDispatcher rd=req.getRequestDispatcher("LoginPage.jsp");				
+				RequestDispatcher rd=req.getRequestDispatcher("RegistrationPage.jsp");				
 				rd.include(req, res);	
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
