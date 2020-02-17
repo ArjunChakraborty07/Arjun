@@ -32,9 +32,9 @@ public class DeleteData {
 		ps.setString(1, email);
 		ps.execute();
 		conn.close();
+		req.removeAttribute("data");
 		PrintWriter out=res.getWriter();
-		
-		out.println("<script type='text/javascript'> alert('Account Deleted') Location='RegistrationPage.jsp'	</script>");
+		out.println("<html><head></head><body onload=\"alert('Account Deleted')\"></body></html>");
 		RequestDispatcher rd=req.getRequestDispatcher("RegistrationPage.jsp");
 		rd.include(req, res);
 	}

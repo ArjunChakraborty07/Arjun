@@ -31,10 +31,15 @@
 <%
 int check;
 ResultSet rs=(ResultSet)session.getAttribute("admin");
+rs.previous();
+rs.previous();
+rs.previous();
+rs.previous();
 while(rs.next())
-{	
+{
+	
+	
 %>
-
   <tbody>
     <tr>
       <th scope="row"><%=rs.getRow()%></th>
@@ -51,52 +56,48 @@ if(rs.getRow()%2==0)
 break;
 }
 %>
-
 </table>
 <div class="container" align="center">
 <form action="admin" method="post">
 <button type="submit" name="button" value="admin" class="btn btn-primary" >ACCOUNT</button>
 </form>
 </div>
-
 <%
-
 if(rs.getRow()==2)
 	{
 %>
 <div class="container" align="center">
 <ul class="pagination justify-content-center" style="margin:20px 0">
-  <li class="page-item disabled"><a class="page-link" href="AdminPage2.jsp">Previous</a></li>
+  <li class="page-item disabled"><a class="page-link">Previous</a></li>
   <li class="page-item" ><a class="page-link" href="AdminPage.jsp">Next</a></li>
 </ul>
 </div>
 <%
 	}
 
- else if(rs.isLast())
-	{ 
-%>
+else if(rs.isLast())
+	{%>
 <div class="container" align="center">
-  <ul class="pagination justify-content-center" style="margin:20px 0">
-    <li class="page-item" ><a class="page-link" href="AdminPage2.jsp">Previous</a></li>
-    <li class="page-item disabled"><a class="page-link" >Next</a></li>
-  </ul>
-</div> 
-<%
-	} 
- else
-	{
-%>
-<div class="container" align="center">
-  <ul class="pagination justify-content-center" style="margin:20px 0">
-	<li class="page-item" ><a class="page-link" href="AdminPage2.jsp">Previous</a></li>
-	<li class="page-item" ><a class="page-link" href="AdminPage.jsp">Next</a></li>
-  </ul>
+<ul class="pagination justify-content-center" style="margin:20px 0">
+  <li class="page-item" ><a class="page-link" href="AdminPage2.jsp">Previous</a></li>
+  <li class="page-item disabled" ><a class="page-link" >Next</a></li>
+</ul>
 </div>
 <%
 	}
+else 
+	{
 %>
+<div class="container" align="center">
+<ul class="pagination justify-content-center" style="margin:20px 0">
+  <li class="page-item" ><a class="page-link" href="AdminPage2.jsp">Previous</a></li>
+  <li class="page-item" ><a class="page-link" href="AdminPage.jsp">Next</a></li>
+</ul>
+</div>
 
+<%
+	}
+%>
 </body>
 </html>
 

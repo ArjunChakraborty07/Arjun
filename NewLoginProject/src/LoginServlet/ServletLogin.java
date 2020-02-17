@@ -26,9 +26,7 @@ public class ServletLogin extends  HttpServlet{
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
 	{
-		res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	    res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	    res.setHeader("expires","0"); //Proxies
+		
 		PrintWriter out=res.getWriter();		
 		String email=req.getParameter("email");
 		String pwd=req.getParameter("password");

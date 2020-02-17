@@ -27,13 +27,16 @@ public class ServletLogout extends HttpServlet{
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
 	{
-		res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	    res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	    res.setHeader("expires","0"); //Proxies
+		
 		String button=req.getParameter("button");
 		if(button.equals("logout"))
-		{
-			
+		{			
+			HttpSession s=req.getSession();
+			s.invalidate();
+			res.setHeader("Cache-Control","no-cache");
+			res.setHeader("Cache-Control","no-store");
+			res.setHeader("Pragma","no-cache");
+			res.setHeader ("Expires", "0");
 			PrintWriter out= res.getWriter();
 			out.println("<html><head></head><body onload=\"alert('Logout Successful')\"></body></html>");
 			RequestDispatcher rd=req.getRequestDispatcher("RegistrationPage.jsp");				
